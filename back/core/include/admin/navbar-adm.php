@@ -5,19 +5,17 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="../admin/index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Produtos</a>
-        </li>
-       
-   
+          <a class="nav-link" href="../pages/product.php">Produtos</a>
+        </li>   
       </ul>
-    </div>
-    <form class="d-flex">       
-        <a href="#" class="btn btn-primary" type="submit">Sair</a>
+      <form class="d-flex" role="search">       
+        <a href="../pages/logout.php" class="btn btn-primary mr-2 " type="submit">Sair</a>
       </form>
+    </div>
   </div>
 </nav>

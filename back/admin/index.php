@@ -4,86 +4,7 @@ session_start();
 
 require_once "../conn/conn.php";
 
-$dados_imovel = filter_input_array(INPUT_POST, FILTER_DEFAULT);  
-// var_dump($dados_imovel);
-    
-if(!empty($dados_imovel['btnSalvarImovel'])){
-
-  
-
-    // $res_imoveis = "INSERT INTO 
-    // imoveis (valor, endereco, numero, images, estado, bairro, dormitorio, banheiro, piscina, churrasqueira, descricao, created ) 
-    // VALUES (:valor, :endereco, :numero, :estado, :images, :bairro, :dormitorio, :banheiro, :piscina, :churrasqueira, :descricao, NOW())";
-
-    // $result_db_imoveis = $conn->prepare($res_imoveis);
-    // $result_db_imoveis->bindParam(':valor', $valor);
-    // $result_db_imoveis->bindParam(':endereco', $endereco);
-    // $result_db_imoveis->bindParam(':numero', $numero);
-    // $result_db_imoveis->bindParam(':estado', $estado);
-    // $result_db_imoveis->bindParam(':bairro', $bairro);
-    // $result_db_imoveis->bindParam(':dormitorio', $dormitorio);
-    // $result_db_imoveis->bindParam(':imagens', $imagens);
-    // $result_db_imoveis->bindParam(':banheiro', $banheiro);
-    // $result_db_imoveis->bindParam(':piscina', $piscina);
-    // $result_db_imoveis->bindParam(':churrasqueira', $churrasqueira);
-    // $result_db_imoveis->bindParam(':descricao', $descricao);
-    // $res = $result_db_imoveis->execute();
-
-  
-
-        // $id_imoveis = $conn->lastInsertId();   
-        
-        // $dir = "../img/imoveis/$id_imoveis/";
-
-        // mkdir($dir, 0755);
-
-        $imovel = $_FILES['imagens'];
-
-        // for($cnt=0; $cnt < count($imovel['name']); $cnt++){
-
-            $imagem_imov = $imovel['name'];
-            $imagem_tmp = $imovel['tmp_name'];
-
-            $files = "../img/imoveis/". $imagem_imov;
-
-            if(move_uploaded_file($imagem_tmp, $files)){
-                extract($dados_imovel);
-
-                $res_imoveis = "INSERT INTO 
-                imoveis (valor, endereco, numero, imagens, estado, bairro, dormitorio, banheiro, piscina, churrasqueira, descricao, created ) 
-                VALUES (:valor, :endereco, :numero, :imagens, :estado, :bairro, :dormitorio, :banheiro, :piscina, :churrasqueira, :descricao, NOW())";
-
-                $result_db_imoveis = $conn->prepare($res_imoveis);
-                $result_db_imoveis->bindParam(':valor', $valor);
-                $result_db_imoveis->bindParam(':endereco', $endereco);
-                $result_db_imoveis->bindParam(':numero', $numero);
-                $result_db_imoveis->bindParam(':estado', $estado);
-                $result_db_imoveis->bindParam(':bairro', $bairro);
-                $result_db_imoveis->bindParam(':dormitorio', $dormitorio);
-                $result_db_imoveis->bindParam(':imagens', $imagem_imov);
-                $result_db_imoveis->bindParam(':banheiro', $banheiro);
-                $result_db_imoveis->bindParam(':piscina', $piscina);
-                $result_db_imoveis->bindParam(':churrasqueira', $churrasqueira);
-                $result_db_imoveis->bindParam(':descricao', $descricao);
-                $res = $result_db_imoveis->execute();
-
-                if($result_db_imoveis->rowCount()){
-
-                    $_SESSION['imo'] = "<p style='color: green;'>Imóvel Cadastrado com SUCESSO!</p>";
-                }
-                // $images_imoveis = "INSERT INTO images_imoveis (images, fk_id_imoveis, created) VALUES (:images, :fk_id_imoveis, NOW())";
-                // $result_db_imagens = $conn->prepare($images_imoveis);
-                // $result_db_imagens->bindParam(':images', $imagem_imov);
-                // $result_db_imagens->bindParam(':fk_id_imoveis', $id_imoveis);    
-                // $result_db_imagens->execute();
-               
-            }
-        // }
-        
-    }
-
-
-
+// UPLOAD IMAGEM BANNER
 if(array_key_exists('files', $_FILES)){
 
     $banner = $_FILES['files'];
@@ -103,105 +24,87 @@ if(array_key_exists('files', $_FILES)){
         }
     }
 }
+// FIM UPLOAD IMAGEM BANNER
 
-// $dados_imovel = filter_input_array(INPUT_POST, FILTER_DEFAULT);  
+$dados_imovel = filter_input_array(INPUT_POST, FILTER_DEFAULT);  
     
-// if(!empty($dados_imovel['btnSalvarImovel'])){
+if(!empty($dados_imovel['btnSalvarImovel'])){
 
-//     extract($dados_imovel);
+    extract($dados_imovel);
 
-//     $res_imoveis = "INSERT INTO 
-//     imoveis (valor, endereco, numero, estado, bairro, dormitorio, banheiro, piscina, churrasqueira, descricao, created ) 
-//     VALUES (:valor, :endereco, :numero, :estado, :bairro, :dormitorio, :banheiro, :piscina, :churrasqueira, :descricao, NOW())";
+    $res_imoveis = "INSERT INTO 
+    imoveis (valor, endereco, numero, estado, bairro, dormitorio, banheiro, piscina, churrasqueira, descricao, created ) 
+    VALUES (:valor, :endereco, :numero, :estado, :bairro, :dormitorio, :banheiro, :piscina, :churrasqueira, :descricao, NOW())";
+    $result_db_imoveis = $conn->prepare($res_imoveis);
+    $result_db_imoveis->bindParam(':valor', $valor);
+    $result_db_imoveis->bindParam(':endereco', $endereco);
+    $result_db_imoveis->bindParam(':numero', $numero);
+    $result_db_imoveis->bindParam(':estado', $estado);
+    $result_db_imoveis->bindParam(':bairro', $bairro);
+    $result_db_imoveis->bindParam(':dormitorio', $dormitorio);
+    $result_db_imoveis->bindParam(':banheiro', $banheiro);
+    $result_db_imoveis->bindParam(':piscina', $piscina);
+    $result_db_imoveis->bindParam(':churrasqueira', $churrasqueira);
+    $result_db_imoveis->bindParam(':descricao', $descricao);
+    $res = $result_db_imoveis->execute();
 
-//     $result_db_imoveis = $conn->prepare($res_imoveis);
-//     $result_db_imoveis->bindParam(':valor', $valor);
-//     $result_db_imoveis->bindParam(':endereco', $endereco);
-//     $result_db_imoveis->bindParam(':numero', $numero);
-//     $result_db_imoveis->bindParam(':estado', $estado);
-//     $result_db_imoveis->bindParam(':bairro', $bairro);
-//     $result_db_imoveis->bindParam(':dormitorio', $dormitorio);
-//     $result_db_imoveis->bindParam(':banheiro', $banheiro);
-//     // $result_db_imoveis->bindParam(':img_imoveis', $name_imovel);
-//     $result_db_imoveis->bindParam(':piscina', $piscina);
-//     $result_db_imoveis->bindParam(':churrasqueira', $churrasqueira);
-//     $result_db_imoveis->bindParam(':descricao', $descricao);
-//     $res = $result_db_imoveis->execute();
-   
+    if($result_db_imoveis->rowCount()){
 
-//     if($result_db_imoveis->rowCount()){
+        $_SESSION['imo'] = "<p style='color: green;'>Imóvel Cadastrado com SUCESSO!</p>";
 
-//         $_SESSION['imo'] = "<p style='color: green;'>Imóvel Cadastrado com SUCESSO!</p>";
+        $id_imoveis = $conn->lastInsertId();
 
-//         $id_imoveis = $conn->lastInsertId();
-//         var_dump($id_imoveis);
+        $imovel = $_FILES['imagens']; 
+        $img_one = $_FILES['images'];
+        $image_one = $img_one['name'];
+        $image_one_tmp = $img_one['tmp_name'];
+        
+        for($cnt=0; $cnt < count($imovel['name']); $cnt++){
+    
+            $name_imovel = $imovel['name'][$cnt];      
+    
+            $tmp_img = $imovel['tmp_name'][$cnt];
+    
+            $files = "../img/imoveis/$id_imoveis/";  
+            
+            $diretorio = $files . $name_imovel;
 
-//         // if(array_key_exists('imagens', $_FILES)){
+            if(file_exists($files)){
+                if(move_uploaded_file($tmp_img, $diretorio)){ 
+                    
+                $images_imoveis = "INSERT INTO images_imoveis (images, fk_id_imoveis, created) VALUES (:images, :fk_id_imoveis, NOW())";
+                $result_db_imagens = $conn->prepare($images_imoveis);
+                $result_db_imagens->bindParam(':images', $name_imovel);
+                $result_db_imagens->bindParam(':fk_id_imoveis', $id_imoveis);       
+                $result_db_imagens->execute();                   
+                }
 
+            }else{
+                mkdir($files, 0755);
+                if(move_uploaded_file($tmp_img, $diretorio)){ 
+
+                    $images_imoveis = "INSERT INTO images_imoveis (images, fk_id_imoveis, created) VALUES (:images, :fk_id_imoveis, NOW())";
+                    $result_db_imagens = $conn->prepare($images_imoveis);
+                    $result_db_imagens->bindParam(':images', $name_imovel);
+                    $result_db_imagens->bindParam(':fk_id_imoveis', $id_imoveis);       
+                    $result_db_imagens->execute();
+
+                }
+            }
+        }
+
+        $file_one = "../img/img_one/$image_one";         
+        if(move_uploaded_file($image_one_tmp, $file_one)){
+            $images_imoveis_one = "INSERT INTO images_imoveis_one (images, fk_id_imoveis, created) VALUES (:images, :fk_id_imoveis, NOW())";
+            $result_db_imagens_one = $conn->prepare($images_imoveis_one);
+            $result_db_imagens_one->bindParam(':images', $image_one);
+            $result_db_imagens_one->bindParam(':fk_id_imoveis', $id_imoveis);       
+            $result_db_imagens_one->execute();  
+        }
            
+    }
 
-
-//             $imovel = $_FILES['imagens']; 
-//             var_dump($imovel);
-        
-//             for($cnt=0; $cnt < count($imovel['name']); $cnt++){
-        
-//                 $name_imovel = $imovel['name'][$cnt];  
-//                 // var_dump($name_imovel);        
-        
-//                 $tmp_img = $imovel['tmp_name'][$cnt];
-        
-//                 $files = "../img/imoveis/$id_imoveis/";  
-                
-//                 mkdir($files, 0755);
-
-//                 $diretorio = $files . $name_imovel;
-        
-//                 if(move_uploaded_file($tmp_img, $diretorio)){                  
-        
-//                     var_dump($name_imovel);
-                  
-        
-//                     // $images_imoveis = "INSERT INTO images_imoveis (images, fk_id_imoveis, created) VALUES (:images, :fk_id_imoveis, NOW())";
-//                     // $result_db_imagens = $conn->prepare($images_imoveis);
-//                     // // $result_db_imagens->bindParam(':images', $name_imovel);
-//                     // // $result_db_imagens->bindParam(':fk_id_imoveis', $id_imoveis);       
-//                     // $result_db_imoveis->execute();
-//                     // // var_dump($images_imoveis);
-//                     // // var_dump($result_db_imagens);
-        
-//                     // var_dump($conn->lastInsertId());
-        
-//                     // // var_dump($getPegar);
-                  
-//                 }    
-//             }  
-//         // }
-//     }
-
-// }    
-
-
-
- // $query_artigos =  "SELECT id, titulo, conteudo, created FROM artigos ORDER BY id DESC LIMIT 40";
-    // $query_artigos = $this->conn->prepare($query_artigos);
-    // $query_artigos->execute();        
-    // $result = $query_artigos->fetchAll();
-
-    // $res = "INSERT INTO professores (nome_prof, img_prof, created, fk_id_turma, fk_turma) VALUES (:nome_prof, :img_prof, :created, :fk_id_turma, :fk_turma)";
-    // $result_db = $conn->prepare($res);
-    // $result_db->bindParam(':nome_prof', $name_user);
-    // $result_db->bindParam(':img_prof', $destino);
-    // $result_db->bindParam(':created', $data_atual);
-    // $result_db->bindParam(':fk_id_turma', $input['select']);
-    // $result_db->bindParam(':fk_turma', $input['select_two']);
-    // $retorno = $result_db->execute();
-
-
-
-
-
-
+}   
 require "../core/include/admin/header-adm.php" ;
 require "../core/include/admin/navbar-adm.php";
 ?>
@@ -234,11 +137,13 @@ require "../core/include/admin/navbar-adm.php";
                         unset($_SESSION['imo']);
                     }
                     ?>
-                    <form action="" method="post" class="p-2" enctype="multipart/form-data" >
+                    <form action="" method="post" class="p-2" enctype="multipart/form-data" >                       
                         <div class="row row-cols-1 row-cols-sm-2 row-cols g-2">   
                             <div class="col ">
+                                <label class="form-label float-start">Imagem Home</label>
+                                <input type="file" name="images" class="form-control" />
                                 <label class="form-label float-start">Valor</label>
-                                <input type="number" class="form-control" name="valor" placeholder="Valor do Imóvel" />
+                                <input type="text" class="form-control" name="valor" placeholder="Valor do Imóvel" />
                                 <label class="form-label float-start">Endereço</label>
                                 <input type="text" class="form-control" name="endereco" placeholder="Endereço do Imóvel" />
                                 <label class="form-label float-start">Número</label>
@@ -281,7 +186,8 @@ require "../core/include/admin/navbar-adm.php";
                                  </select>  
                                 
                             <label class="form-label float-start">Imagem</label>
-                                <input type="file" name="imagens" class="form-control" />
+                                <!-- <input type="file" name="imagens" class="form-control" /> -->
+                                <input type="file" name="imagens[]" multiple class="form-control" />
                  
                                
                             </div>  
