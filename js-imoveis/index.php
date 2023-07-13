@@ -10,7 +10,7 @@ ob_start();
 
 require_once ".././back/conn/conn.php";
 
-  $query_banner =  "SELECT * FROM img_banner LIMIT 1";
+  $query_banner =  "SELECT * FROM img_banner ORDER BY id DESC LIMIT 1";
   $query_banner_imo = $conn->prepare($query_banner);
   $query_banner_imo->execute();        
   $result = $query_banner_imo->fetch(PDO::FETCH_ASSOC);

@@ -6,5 +6,6 @@
     <script src="js/navbar.js"></script>
     <script src="js/counter.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/ckeckImage.js"></script>
   </body>
 </html>
