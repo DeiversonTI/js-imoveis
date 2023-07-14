@@ -10,10 +10,14 @@ ob_start();
 
 require_once ".././back/conn/conn.php";
 
-  $query_banner =  "SELECT * FROM img_banner ORDER BY id DESC LIMIT 1";
+
+  // $query_banner =  "SELECT * FROM img_banner WHERE id=:id LIMIT 1";
+  $query_banner =  "SELECT * FROM mani_banner LIMIT 1";
   $query_banner_imo = $conn->prepare($query_banner);
+  // $query_banner_imo->bindParam(":id", $id);
   $query_banner_imo->execute();        
   $result = $query_banner_imo->fetch(PDO::FETCH_ASSOC);
+  // var_dump($result);
 
   $query =  "SELECT imo.id, imo.valor, img.images, imo.endereco, imo.numero, imo.estado, imo.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao 
   FROM  imoveis As imo
@@ -36,7 +40,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
     <div class="hero">
       <div class="hero-slide">
         <div
-          class="img overlay" style="background-image: url('<?php echo $url_banner . $result['imag_banner']?>')">
+          class="img overlay" style="background-image: url('<?php echo $url_banner . $result['images']?>')">
         </div>       
       </div>
 
