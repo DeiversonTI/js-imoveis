@@ -19,3 +19,29 @@ function previewImage() {
 }
 
 
+var flexCheckDefault = document.querySelector("input[id='flexCheckDefault']");
+ 
+function ckecked(event) {
+
+    console.log(document.querySelector("input[type='checkbox']"))
+   
+    // console.log(event)
+    // console.log(flexCheckDefault);
+   
+    if (event.target.checked) {
+     
+        flexCheckDefault.ckecked = true;
+       localStorage.setItem("ckecado",flexCheckDefault.ckecked = true)
+
+        console.log("ckecado")
+        
+        // var teste = document.content
+        
+    } else {
+        // flexCheckDefault.removeAttribute("checked");
+        flexCheckDefault.checked = false;
+        console.log("BLOQUEADO")
+    }
+}
+
+

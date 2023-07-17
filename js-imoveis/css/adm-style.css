@@ -1,0 +1,24 @@
+.img_preview_banner {
+    width: 350px;
+}
+
+/* .__gaps{
+    margin: 5px 0px;
+  
+} */
+
+.caption_adm {
+    /* padding-top: 0.5rem;
+    padding-bottom: 0.5rem; */
+    color: #6c757d;
+    text-align: left;
+    font-size: 0.72em;
+}
+
+@media screen and (max-width:990px) {  
+
+    .img_preview_banner {
+        width: 150px;
+    }
+
+}

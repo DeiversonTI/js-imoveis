@@ -13,8 +13,71 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+.inp_input,
+.sel_input{
+  padding:15px;
+  border:1px solid #c4c3c3;
+  background-color: #f1f1f1;
+  width: 100%;
+  border-radius: 7px;
+}
 
- .form_select{
+.sel_input:focus {
+border: 2px solid var(--bs-blue);
+}
+
+.inp_input{
+  width: 100%;  
+}
+.sel_input{
+  width: 100%;
+  padding: 1.2em;
+}
+
+input[type=search]:focus
+{
+  border: 2px solid var(--bs-blue);;
+  outline: none;
+} 
+input[type=search]::placeholder {
+  color: #000;
+}
+.btn_inp{
+  background-color: var(--bs-blue);
+  color: var(--bs-white);
+}
+.btn_inp:hover {
+  background-color: var(--bs-orange);
+}
+.content__search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ .b1{
+  width: 100%;
+ }
+ .b2 {
+   width: 50%;
+ }
+ 
+@media screen and (max-width:990px) {
+  .content__search {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+    }
+    .b1, .b2, .b3{
+      width: 100%;
+    }
+   
+     
+}
+
+
+.form_select{
   padding: 20px 35px;
   border: 1px solid #ccc;
   border-radius: 8px;
