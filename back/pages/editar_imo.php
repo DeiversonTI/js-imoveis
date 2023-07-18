@@ -30,10 +30,10 @@ require "../../back/core/include/admin/header-adm.php";
 
 <div class="container col-5 border border-1 p-5">
     <div class="d-flex justify-content-between align-items-center">
-         <h1>Atualizar Imóvel</h1>
-         <a class="btn btn-outline-danger" href="../pages/product.php">Voltar</a>
+        <h1>Atualizar Imóvel</h1>
+        <a class="btn btn-outline-danger" href="../pages/product.php">Voltar</a>
     </div>
-   
+
 
     <form action="../model/upt_imoveis.php" method="post" class="p-2" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -57,19 +57,16 @@ require "../../back/core/include/admin/header-adm.php";
 
             <div class="col">
                 <label class="form-label float-start">Dormitório</label>
-                <select class="form-select" value="" name="dormitorio" id="">
-                    <option value="<?php echo $dormitorio; ?>"><?php echo $dormitorio; ?></option>
-                    <option value="1">1 Quarto</option>
-                    <option value="2">2 Quarto</option>
-                    <option value="3">3 Quarto</option>
-                </select>
+                <input type="number" class="form-control" value="<?php echo $dormitorio; ?>" name="dormitorio" placeholder="Número de Dormitório">
+
                 <label class="form-label float-start">Banheiro</label>
-                <select class="form-select" value="" name="banheiro">
-                    <option value="<?php echo $banheiro; ?>"><?php echo $banheiro; ?></option>
-                    <option value="1">1 Banheiro</option>
-                    <option value="2">2 Banheiro</option>
-                    <option value="3">3 Banheiro</option>
-                </select>
+                <input type="number" class="form-control" value="<?php echo $banheiro; ?>" name="banheiro" placeholder="Número de Banheiro">
+
+                <label class="form-label float-start">Suite</label>
+                <input type="number" class="form-control" value="<?php echo $suite; ?>" name="suite" placeholder="Número de Suíte">
+
+                <label class="form-label float-start">Vagas de Carro</label>
+                <input type="number" class="form-control" value="<?php echo $vagas; ?>" name="vagas" placeholder="Número de Vagas">
 
 
                 <label class="form-label float-start">Piscina</label>
@@ -89,15 +86,31 @@ require "../../back/core/include/admin/header-adm.php";
                 <input type="file" name="imagens[]" multiple class="form-control" />
             </div>
 
-            <div class="row  ">
+            <div class="row">
                 <div class="col">
-                    <label class="form-label float-start">Descrição do Imóvel</label>
-                    <textarea style="height: 100px" cols="50" name="descricao">value="<?php echo $descricao; ?>"</textarea>
+                    <label class="form-label float-start">Descrição do Imóvel</label><br>
+                    <textarea style="height: 100px" cols="35" name="descricao">value="<?php echo $descricao; ?>"</textarea>
 
-                </div>
-                <div style="width: 100%;" class="mt-2 col bg-body d-flex justify-content-center align-items-center ">
+                    <label class="form-label float-start">Situação</label>
+                    <select class="form-select" name="situacao">
+                        <option value="<?php echo $situacao; ?>"><?php echo $situacao; ?></option>
+                        <option value="comprar">Comprar</option>
+                        <option value="Vender">Vender</option>
+                    </select>
+                    <label class="form-label float-start">Tipo do Imóvel</label>
+                    <select class="form-select" name="tipo_imovel">
+                        <option value="<?php echo $tipo_imovel; ?>"><?php echo $tipo_imovel; ?></option>
+                        <option value="Casa">Casa</option>
+                        <option value="Apartamento">Apartamento</option>
+                        <option value="Sítio">Sítio</option>
+                        <option value="Chácara">Chácara</option>
+                    </select>
+                     <div style="width: 100%;" class="mt-2 col bg-body d-flex justify-content-center align-items-center ">
                     <input type="submit" class="btn btn-primary px-5 py-2" value="Atualizar Imóveis" name="btnSalvarImovel" />
                 </div>
+
+                </div>
+               
             </div>
         </div>
     </form>

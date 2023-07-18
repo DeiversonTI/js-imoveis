@@ -27,7 +27,7 @@ if (!empty($dados_imovel['btnSalvarImovel'])) {
     extract($dados_imovel);
 
     $res_imoveis = " UPDATE imoveis
-                     SET valor=:valor, endereco=:endereco, numero=:numero, estado=:estado, bairro=:bairro, dormitorio=:dormitorio, banheiro=:banheiro, piscina=:piscina, churrasqueira=:churrasqueira, descricao=:descricao, modified=NOW()
+                     SET valor=:valor, endereco=:endereco, numero=:numero, estado=:estado, bairro=:bairro, dormitorio=:dormitorio, banheiro=:banheiro,suite=:suite, vagas=:vagas, piscina=:piscina, churrasqueira=:churrasqueira, descricao=:descricao, situacao=:situacao, tipo_imovel=:tipo_imovel, modified=NOW()
                      WHERE id=$id";
     $result_db_imoveis = $conn->prepare($res_imoveis);
     $result_db_imoveis->bindParam(':valor', $valor);
@@ -37,9 +37,13 @@ if (!empty($dados_imovel['btnSalvarImovel'])) {
     $result_db_imoveis->bindParam(':bairro', $bairro);
     $result_db_imoveis->bindParam(':dormitorio', $dormitorio);
     $result_db_imoveis->bindParam(':banheiro', $banheiro);
+    $result_db_imoveis->bindParam(':suite', $suite);
+    $result_db_imoveis->bindParam(':vagas', $vagas);
     $result_db_imoveis->bindParam(':piscina', $piscina);
     $result_db_imoveis->bindParam(':churrasqueira', $churrasqueira);
     $result_db_imoveis->bindParam(':descricao', $descricao);
+    $result_db_imoveis->bindParam(':situacao', $situacao);
+    $result_db_imoveis->bindParam(':tipo_imovel', $tipo_imovel);
     $res = $result_db_imoveis->execute();
 
     if ($res) {

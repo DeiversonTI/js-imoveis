@@ -15,10 +15,26 @@
     font-size: 0.72em;
 }
 
-@media screen and (max-width:990px) {  
+.login__princ {
+    width: 25%;
+}
+
+@media screen and (max-width:990px) {
 
     .img_preview_banner {
         width: 150px;
+    }
+
+    .login__princ {
+        width: 100%;
+    }
+
+}
+@media screen and (min-width:991px) and (max-width:1377px){
+
+   
+    .login__princ {
+        width: 40%;
     }
 
 }

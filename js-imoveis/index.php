@@ -101,7 +101,9 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
           <div class="property-slider">
             <?php
             foreach ($retorno as $resp) :
+
               extract($resp);
+
             ?>
 
               <div class="property-item">
@@ -126,7 +128,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
                       </span>
                     </div>
 
-                    <a href="property-single.php" class="btn btn-primary py-2 px-3">Mais Detalhes</a>
+                    <a href="property-single.php?id=<?php echo $id; ?>" class="btn btn-primary py-2 px-3">Mais Detalhes</a>
                   </div>
                 </div>
               </div>
@@ -197,7 +199,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
   </div>
 </section>
 
-<div class="section sec-testimonials">
+<!-- <div class="section sec-testimonials">
   <div class="container">
     <div class="row mb-5 align-items-center">
       <div class="col-md-6">
@@ -402,21 +404,20 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<div class="section">
+<!-- <div class="section">
   <div class="row justify-content-center footer-cta" data-aos="fade-up">
     <div class="col-lg-7 mx-auto text-center">
       <h2 class="mb-4">Be a part of our growing real state agents</h2>
       <p>
         <a href="#" target="_blank" class="btn btn-primary text-white py-3 px-4">Apply for Real Estate agent</a>
       </p>
-    </div>
-    <!-- /.col-lg-7 -->
-  </div>
-  <!-- /.row -->
-</div>
+    </div>    
+  </div>  
+</div> -->
 
+<!-- 
 <div class="section section-5 bg-light">
   <div class="container">
     <div class="row justify-content-center text-center mb-5">
@@ -524,7 +525,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="site-footer">
   <div class="container">

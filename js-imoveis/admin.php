@@ -45,14 +45,8 @@ if (!empty($dados['btnLogar'])) {
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Login ou Senha Inválidas!</div>";
         }
-    }   // var_dump($retorna);
+    }
 }
-// echo json_encode($retorna);
-
-
-
-
-
 
 ?>
 
@@ -64,18 +58,22 @@ if (!empty($dados['btnLogar'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" href="./images/favicon-32x32.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/js-imoveis/fonts/icomoon/style.css" />
     <!-- <link rel="stylesheet" href="../.././js-imoveis/fonts/flaticon/font/flaticon.css" /> -->
-    <link rel="stylesheet" href="/css/adm-style.css" />
+    <link rel="stylesheet" href="./css/adm-style.css" />
     <title>login</title>
 </head>
 
-<body style="background-color: var(--bs-gray-200);">
-    <div style="height: 100vh;" class="container w-25 flex-column d-flex justify-content-center align-items-center">
+<body style="background-color: var(--bs-gray-100);">
+    <div style="height: 100vh;" class="container  flex-column d-flex justify-content-center align-items-center">
+        <div class="mb-3">
+            <img src="../js-imoveis/images/banner-assessoria-preto.png" alt="" style="max-width: 10em ;">
+        </div>
 
-        <form action="" class="row row-cols-1 g-1 border p-3 bg-body" method="post">
+        <form action="" class="row login__princ row-cols-1 g-1 border p-3 bg-body rounded" method="post">
             <div>
                 <?php
                 if (isset($_SESSION['msg'])) {
@@ -87,17 +85,17 @@ if (!empty($dados['btnLogar'])) {
             <div>
                 <h1>Login</h1>
             </div>
-            <div class="col-12">
+            <div class="col">
                 <label for="inputEmail4" class="form-label">Email</label>
                 <input type="email" name="email" class="form-control" id="inputEmail4">
             </div>
-            <div class="col-12">
+            <div class="col">
                 <label for="inputPassword4" class="form-label">Password</label>
                 <input type="password" name="senha" class="form-control" id="inputPassword4">
             </div>
 
-            <div class="mt-2">
-                <input type="submit" class="col-12 btn btn-lg btn-primary" name="btnLogar" value="Logar">
+            <div class="mt-2 ">
+                <input type="submit" class="col  btn btn-lg btn-primary" name="btnLogar" value="Logar">
             </div>
         </form>
     </div>

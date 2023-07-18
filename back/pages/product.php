@@ -9,7 +9,7 @@ require "../links.php";
 
 
 
-$query =  "SELECT imo.id, imo.valor, img.images, imo.endereco, imo.numero, imo.estado, imo.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao 
+$query =  "SELECT imo.id, imo.valor, img.images, imo.endereco, imo.numero, imo.estado, imo.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao 
   FROM  imoveis As imo
   INNER JOIN images_imoveis_one As img
   ON imo.id  = img.fk_id_imoveis
@@ -57,19 +57,16 @@ require "../../back/core/include/admin/navbar-adm.php";
 
                                 <div class="col">
                                     <label class="form-label float-start">Dormitório</label>
-                                    <select class="form-select" name="dormitorio" id="">
-                                        <option value="">Selecionar</option>
-                                        <option value="1">1 Quarto</option>
-                                        <option value="2">2 Quarto</option>
-                                        <option value="3">3 Quarto</option>
-                                    </select>
+                                    <input type="number" class="form-control" name="dormitorio" placeholder="Número de Dormitório">
+
                                     <label class="form-label float-start">Banheiro</label>
-                                    <select class="form-select" name="banheiro">
-                                        <option value="">Selecionar</option>
-                                        <option value="1">1 Banheiro</option>
-                                        <option value="2">2 Banheiro</option>
-                                        <option value="3">3 Banheiro</option>
-                                    </select>
+                                    <input type="number" class="form-control" name="banheiro" placeholder="Número de Banheiro">
+
+                                    <label class="form-label float-start">Suite</label>
+                                    <input type="number" class="form-control" name="suite" placeholder="Número de Suíte">
+
+                                    <label class="form-label float-start">Vagas de Carro</label>
+                                    <input type="number" class="form-control" name="vagas" placeholder="Número de Vagas">
 
 
                                     <label class="form-label float-start">Piscina</label>
@@ -94,7 +91,23 @@ require "../../back/core/include/admin/navbar-adm.php";
                                         <label class="form-label float-start">Descrição do Imóvel</label>
                                         <textarea style="height: 100px" cols="50" name="descricao"></textarea>
 
+                                        <label class="form-label float-start">Situação</label>
+                                        <select class="form-select" name="situacao">
+                                            <option value="">Selecionar</option>
+                                            <option value="comprar">Comprar</option>
+                                            <option value="Vender">Vender</option>
+                                        </select>
+                                        <label class="form-label float-start">Tipo do Imóvel</label>
+                                        <select class="form-select" name="tipo_imovel">
+                                            <option value="">Selecionar</option>
+                                            <option value="Casa">Casa</option>
+                                            <option value="Apartamento">Apartamento</option>
+                                            <option value="Sítio">Sítio</option>
+                                            <option value="Chácara">Chácara</option>
+                                        </select>
                                     </div>
+                                    
+
                                     <div style="width: 100%;" class="mt-2 col bg-body d-flex justify-content-center align-items-center ">
                                         <input type="submit" class="btn btn-primary px-5 py-2" value="Salvar Imóveis" name="btnSalvarImovel" />
                                     </div>
@@ -125,13 +138,11 @@ require "../../back/core/include/admin/navbar-adm.php";
                                                 <span class="caption_adm"><?php echo $dormitorio; ?> Dormitório </span>
                                             </span>
                                             <span class="d-block d-flex align-items-center">
-                                                <span class="icon-bath me-2"></span>
+                                                <span class="me-2"><i class="fa-solid fa-shower"></i></span>
                                                 <span class="caption_adm"><?php echo $banheiro ?> Banheiro</span>
                                             </span>
-
                                         </div>
                                         <div class=" d-flex mb-1 text-secondary">
-
                                             <span class="d-block d-flex align-items-center">
                                                 <span class="me-2"><i class="fas fa-swimmer"></i></span>
                                                 <span class="caption_adm me-2">Piscina - <?php echo $piscina ?></span>
@@ -139,6 +150,16 @@ require "../../back/core/include/admin/navbar-adm.php";
                                             <span class="d-block d-flex align-items-center">
                                                 <span class="me-2"><i class="fas fa-utensils"></i></span>
                                                 <span class="caption_adm">Churrasqueira - <?php echo $churrasqueira ?></span>
+                                            </span>
+                                        </div>
+                                        <div class=" d-flex mb-1 text-secondary">
+                                            <span class="d-block d-flex align-items-center">
+                                                <span class="me-2"><i class="fa-solid fa-bath"></i></span>
+                                                <span class="caption_adm me-2"><?php echo $suite ?> Suíte</span>
+                                            </span>
+                                            <span class="d-block d-flex align-items-center">
+                                                <span class="me-2"><i class="fa-solid fa-car"></i></span>
+                                                <span class="caption_adm"><?php echo $vagas ?> Vagas</span>
                                             </span>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center gap-2">

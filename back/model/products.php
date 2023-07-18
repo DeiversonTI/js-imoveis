@@ -20,8 +20,8 @@ if (!empty($dados_imovel['btnSalvarImovel'])) {
     extract($dados_imovel);
 
     $res_imoveis = "INSERT INTO
-imoveis (valor, endereco, numero, estado, bairro, dormitorio, banheiro, piscina, churrasqueira, descricao, created )
-VALUES (:valor, :endereco, :numero, :estado, :bairro, :dormitorio, :banheiro, :piscina, :churrasqueira, :descricao, NOW())";
+imoveis (valor, endereco, numero, estado, bairro, dormitorio, banheiro, suite, vagas, piscina, churrasqueira, descricao, situacao, tipo_imovel, created )
+VALUES (:valor, :endereco, :numero, :estado, :bairro, :dormitorio, :banheiro, :suite, :vagas, :piscina, :churrasqueira, :descricao, :situacao, :tipo_imovel, NOW())";
     $result_db_imoveis = $conn->prepare($res_imoveis);
     $result_db_imoveis->bindParam(':valor', $valor);
     $result_db_imoveis->bindParam(':endereco', $endereco);
@@ -30,9 +30,13 @@ VALUES (:valor, :endereco, :numero, :estado, :bairro, :dormitorio, :banheiro, :p
     $result_db_imoveis->bindParam(':bairro', $bairro);
     $result_db_imoveis->bindParam(':dormitorio', $dormitorio);
     $result_db_imoveis->bindParam(':banheiro', $banheiro);
+    $result_db_imoveis->bindParam(':suite', $suite);
+    $result_db_imoveis->bindParam(':vagas', $vagas);
     $result_db_imoveis->bindParam(':piscina', $piscina);
     $result_db_imoveis->bindParam(':churrasqueira', $churrasqueira);
     $result_db_imoveis->bindParam(':descricao', $descricao);
+    $result_db_imoveis->bindParam(':situacao', $situacao);
+    $result_db_imoveis->bindParam(':tipo_imovel', $tipo_imovel);
     $res = $result_db_imoveis->execute();
 
     if ($result_db_imoveis->rowCount()) {
