@@ -9,7 +9,6 @@ session_start();
 ob_start();
 
 require_once ".././back/conn/conn.php";
-require "../back/links.php";
 
 $query_banner =  "SELECT * FROM mani_banner LIMIT 1";
 $query_banner_imo = $conn->prepare($query_banner);
@@ -17,7 +16,7 @@ $query_banner_imo->execute();
 $result = $query_banner_imo->fetch(PDO::FETCH_ASSOC);
 
 
-$query =  "SELECT imo.id, ender.valor_imovel, img.images, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao 
+$query =  "SELECT imo.id, imo.cod_imovel, ender.valor_imovel, img.images, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao 
   FROM  imoveis As imo
   INNER JOIN images_imoveis_one As img
   ON imo.id = img.fk_id_imoveis
@@ -28,6 +27,7 @@ $query_imo = $conn->prepare($query);
 $query_imo->execute();
 $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($retorno);
+
 
 
 require "../.././js-imoveis/back/core/include/app/header.php";
@@ -41,9 +41,10 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
   </div>
 
   <div class="container position-absolute top-50 start-50 translate-middle ">
-    <div class="py-5 text-center d-flex flex-column">
-      <span class="text-light h2 fw-bold">Venda de Imóvel no Rio de Janeiro</span>
-      <span class="h4 text-light fw-light">Assessoria Imobiliária</span>
+    <div class="img_logo_company  text-center d-flex flex-column justify-content-center align-items-center">
+      <img class="mb-2 img_logo_company" src="<?php echo $url ?>" alt="">
+      <span class="text__slug">Venda de Imóvel no Rio de Janeiro</span>
+      <span class="text__subtitle">Assessoria Imobiliária</span>
     </div>
     <div>
       <div class="text-center p-3 rounded" style=" background-color:rgba(255, 255, 255, .2) ;">
@@ -115,6 +116,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
                 </a>
 
                 <div class="property-content">
+                  <div>Código do Imóvel: <?php echo $cod_imovel; ?></div>
                   <div class="price mb-2"><span>R$ <?php echo $valor_imovel; ?></span></div>
                   <div>
                     <span class="d-block mb-2 text-black-50"><?php echo $endereco; ?></span>

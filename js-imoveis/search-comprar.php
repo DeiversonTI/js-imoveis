@@ -1,10 +1,6 @@
 <?php
-session_start();
-ob_start();
-
 
 require_once ".././back/conn/conn.php";
-require "../back/links.php";
 
 $search = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -17,9 +13,9 @@ if (!empty($search['btnSearch'])) {
     $sit = "%" . $search['situacao'] . "%";
     $nome = "%" . $search['nome'] . "%";
 
-   
+
     //NOVO - O BUSCAR SÓ ESTA PESQUISANDO POR ENDEREÇO, PRECISO PESQUISAR POR MAIS OPÇÕES, EX. BAIRRO, ESTADO, VALOR..
-    $query =  "SELECT imo.id, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+    $query =  "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
     FROM  imoveis As imo
 
     INNER JOIN images_imoveis_one As img 
@@ -31,9 +27,10 @@ if (!empty($search['btnSearch'])) {
     INNER JOIN sit_imoveis As sit
     ON sit.fk_id_imoveis=imo.id
 
-    WHERE sit.situacao LIKE :situacao  
+    WHERE sit.situacao LIKE :situacao 
     AND sit.tipo_imovel LIKE :tipo   
     AND ende.endereco LIKE :nome_ende
+    -- OR imo.cod_imovel LIKE :nome_est
     -- OR ende.valor_imovel LIKE :nome_val
     -- OR ende.bairro LIKE :nome_bai
     -- OR ende.estado LIKE :nome_est
@@ -44,8 +41,8 @@ if (!empty($search['btnSearch'])) {
     $query_imo = $conn->prepare($query);
     $query_imo->bindParam(":situacao", $sit);
     $query_imo->bindParam(":tipo", $tipo);
-    $query_imo->bindParam(":nome_ende", $nome, PDO::PARAM_STR);
-    // $query_imo->bindParam(":nome_est", $nome, PDO::PARAM_STR);
+    $query_imo->bindParam(":nome_ende", $nome);
+    // $query_imo->bindParam(":nome_est", $nome);
     // $query_imo->bindParam(":nome_bai", $nome, PDO::PARAM_STR);
     // $query_imo->bindParam(":nome_val", $nome, PDO::PARAM_STR);
     $query_imo->execute();
@@ -384,6 +381,11 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
                             </a>
 
                             <div class="property-content">
+                                <div>
+                                    <span>
+                                        Código Imóvel: <?php echo $cod_imovel; ?>
+                                    </span>
+                                </div>
                                 <div class="price mb-2"><span>R$ <?php echo $valor_imovel; ?></span></div>
                                 <div>
                                     <span class="d-block mb-2 text-black-50"><?php echo $endereco; ?></span>

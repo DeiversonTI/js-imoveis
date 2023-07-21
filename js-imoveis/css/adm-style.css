@@ -1,5 +1,8 @@
 .img_preview_banner {
-    width: 350px;
+    width: 150px;
+}
+.img_preview_logo {
+    width: 120px;
 }
 
 /* .__gaps{

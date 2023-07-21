@@ -12,7 +12,7 @@
     <div class="menu-bg-wrap">
       <div class="site-navigation d-flex align-items-center justify-content-between">
         <a href="index.php" class="logo m-0 float-start">
-          <img src=".././js-imoveis/images/logo-branco-sem-corretor.png" alt="" style="max-width: 75px;">
+          <img src="<?php echo $url; ?>" alt="" style="max-width: 75px;">
         </a>
 
         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">

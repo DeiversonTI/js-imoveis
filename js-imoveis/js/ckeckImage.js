@@ -18,6 +18,25 @@ function previewImage() {
 
 }
 
+function previewLogo() {
+
+    var image = document.querySelector("input[name=logo]").files[0];
+    var preview = document.querySelector('#preview_logo');
+
+    var reader = new FileReader();
+
+    reader.onloadend = () =>{
+        preview.src = reader.result;
+    }
+
+    if(image){
+        reader.readAsDataURL(image);
+    }else{
+        preview.src = "";
+    }
+
+}
+
 
 var flexCheckDefault = document.querySelector("input[id='flexCheckDefault']");
  

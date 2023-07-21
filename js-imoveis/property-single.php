@@ -4,7 +4,7 @@ session_start();
 ob_start();
 
 require_once ".././back/conn/conn.php";
-require "../back/Links.php";
+// require "../back/Links.php";
 
 $dados = filter_input(INPUT_GET, 'id', FILTER_DEFAULT);
 
@@ -12,11 +12,12 @@ $dados = filter_input(INPUT_GET, 'id', FILTER_DEFAULT);
 $sel_imgs = "SELECT * FROM images_imoveis WHERE fk_id_imoveis=$dados";
 $query_imgs = $conn->prepare($sel_imgs);
 $query_imgs->execute();
-$res = $query_imgs->fetchAll(PDO::FETCH_ASSOC);
+$result_imgs = $query_imgs->fetchAll(PDO::FETCH_ASSOC);
+// var_dump($res);
 
 // RECUPERANDO A POSTAGEM DO USUÁRIO PELO ID
 // $sel_img = "SELECT * FROM imoveis WHERE id=$dados LIMIT 1";
-$query_imo =  "SELECT imo.id, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+$query_imo =  "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
 FROM  imoveis As imo
 INNER JOIN images_imoveis_one As img 
 ON imo.id  = img.fk_id_imoveis
@@ -66,7 +67,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
           <div class="img-property-slide-wrap">
             <div class="img-property-slide">
               <?php
-              foreach ($res as $imgs) :
+              foreach ($result_imgs as $imgs) :
                 extract($imgs);
               ?>
                 <img src="<?php echo URLIMOVEIS . $fk_id_imoveis . "/" . $images; ?>" alt="Image" class="img-fluid" />
@@ -81,6 +82,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
           </div>
         </div>
         <div class="col-lg-4">
+          <p class="meta">Código do Imóvel: <?php echo $result['cod_imovel']; ?></p>
           <h1 class="bg-light  py-3 px-1">Valor: <?php echo $result['valor_imovel'] ?></h1>
           <h2 class="heading text-primary"><?php echo $result['endereco'] . ", " . $result['num_casa']; ?></h2>
           <p class="meta"><?php echo $result['bairro'] . " - " . $result['estado']; ?></p>

@@ -60,6 +60,25 @@ input[type=search]::placeholder {
  .b2 {
    width: 50%;
  }
+ .img_logo_company img{
+  max-width: 190px;
+  
+ }
+ /* Roboto, Poppins, Open+Sans, Montserrat, Work+Sans */
+ .img_logo_company .text__slug {
+   font-size: 3em;
+   color: #e4e4e4;
+   font-family: Montserrat, sans-serif;
+   font-weight:800;
+ }
+ .img_logo_company .text__subtitle {
+   font-size: 2em;
+   color: #e4e4e4;
+   font-family: Poppins, sans-serif;
+   font-weight:300;
+   letter-spacing: 2px;
+ }
+ 
  
 @media screen and (max-width:990px) {
   .content__search {
@@ -71,6 +90,24 @@ input[type=search]::placeholder {
     }
     .b1, .b2, .b3{
       width: 100%;
+    }
+    .img_logo_company img {
+      max-width: 120px;
+      margin-top: 5.5rem;
+    }
+    .img_logo_company .text__slug {
+      font-size: 1.1em;
+      color: #e4e4e4;
+      font-family: Montserrat, sans-serif;
+      font-weight: 800;
+    }
+
+    .img_logo_company .text__subtitle {
+      font-size: .9em;
+      color: #e4e4e4;
+      font-family: Poppins, sans-serif;
+      font-weight: 300;
+      letter-spacing: 2px;
     }
    
      
@@ -140,7 +177,9 @@ input[type=search]::placeholder {
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
-  --bs-body-bg: #fff; }
+  --bs-body-bg: #fff;
+  --bs-info-200: #cae9ef;
+ }
 
 *,
 *::before,

@@ -37,9 +37,10 @@ if (!empty($dados_imovel['btnSalvarImovel'])) {
     $res_ende = $result_db_end->execute();
     
 
-    $res_imoveis = "UPDATE imoveis SET dormitorio=:dormitorio, banheiro=:banheiro, suite=:suite, vagas=:vagas, piscina=:piscina, churrasqueira=:churrasqueira, descricao=:descricao, modified=NOW()
+    $res_imoveis = "UPDATE imoveis SET cod_imovel=:cod_imovel, dormitorio=:dormitorio, banheiro=:banheiro, suite=:suite, vagas=:vagas, piscina=:piscina, churrasqueira=:churrasqueira, descricao=:descricao, modified=NOW()
                      WHERE id=$id";
     $result_db_imoveis = $conn->prepare($res_imoveis);    
+    $result_db_imoveis->bindParam(':cod_imovel', $codigo);
     $result_db_imoveis->bindParam(':dormitorio', $dormitorio);
     $result_db_imoveis->bindParam(':banheiro', $banheiro);
     $result_db_imoveis->bindParam(':suite', $suite);

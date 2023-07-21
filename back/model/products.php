@@ -4,28 +4,19 @@ ob_start();
 
 require_once "../conn/conn.php";
 
-// $query = "SELECT imo.id, imo.valor, img.images, imo.endereco, imo.numero, imo.estado, imo.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao
-// FROM imoveis As imo
-// INNER JOIN images_imoveis_one As img
-// ON imo.id = img.fk_id_imoveis
-// ORDER BY id DESC LIMIT 40";
-// $query_imo = $conn->prepare($query);
-// $query_imo->execute();
-// $result = $query_imo->fetchAll(PDO::FETCH_ASSOC);
-
 $dados_imovel = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
 
 if (!empty($dados_imovel['btnSalvarImovel'])) {
 
-    var_dump($dados_imovel);
+    // var_dump($dados_imovel);
 
     extract($dados_imovel);
 
     $res_imoveis = "INSERT INTO
-imoveis ( dormitorio, banheiro, suite, vagas, piscina, churrasqueira, descricao,  created )
-VALUES ( :dormitorio, :banheiro, :suite, :vagas, :piscina, :churrasqueira, :descricao, NOW())";
+imoveis ( cod_imovel, dormitorio, banheiro, suite, vagas, piscina, churrasqueira, descricao,  created )
+VALUES ( :cod_imovel, :dormitorio, :banheiro, :suite, :vagas, :piscina, :churrasqueira, :descricao, NOW())";
     $result_db_imoveis = $conn->prepare($res_imoveis);   
+    $result_db_imoveis->bindParam(':cod_imovel', $codigo);
     $result_db_imoveis->bindParam(':dormitorio', $dormitorio);
     $result_db_imoveis->bindParam(':banheiro', $banheiro);
     $result_db_imoveis->bindParam(':suite', $suite);

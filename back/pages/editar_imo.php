@@ -6,7 +6,7 @@ require "../Links.php";
 $id = $_GET['id'];
 
 
-$query_mani =  "SELECT imo.id, ender.valor_imovel, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+$query_mani =  "SELECT imo.id, imo.cod_imovel, ender.valor_imovel, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
   FROM  imoveis As imo
   INNER JOIN enderecos As ender 
   ON ender.fk_id_imoveis=imo.id
@@ -48,6 +48,8 @@ require "../../back/core/include/admin/header-adm.php";
                 <label class="form-label float-start">Imagem Home</label><br><br>
                 <img class="float-start" src="<?php echo URLIMGONE . $result_img['images']; ?>" alt="" style="max-width: 200px; margin-bottom: 15px;">
                 <input type="file" name="images" class="form-control" />
+                <label class="form-label float-start">Código do Imóvel</label>
+                <input type="text" class="form-control" value="<?php echo $cod_imovel; ?>" name="codigo" placeholder="Código do Imóvel" />
                 <label class="form-label float-start">Valor</label>
                 <input type="text" class="form-control" value="<?php echo $valor_imovel; ?>" name="valor" placeholder="Valor do Imóvel" />
                 <label class="form-label float-start">Endereço</label>

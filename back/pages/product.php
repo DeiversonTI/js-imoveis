@@ -5,11 +5,10 @@ ob_start();
 
 require_once "../conn/conn.php";
 
+// ASSIM QUE DER POR ESSE LINK DENTRO DO ADMIN-HEADER PARA FICAR GLOBAL
 require "../links.php";
 
-
-
-$query =  "SELECT imo.id, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+$query = "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
 FROM  imoveis As imo
 INNER JOIN images_imoveis_one As img 
 ON imo.id  = img.fk_id_imoveis
@@ -30,7 +29,7 @@ require "../../back/core/include/admin/navbar-adm.php";
 
 <section class="mx-3">
     <div class="container">
-        <h1 class="py-2 text-light-emphasis display-1 ">Painel Administrativo</h1>
+        <h1 class="py-1 text-light-emphasis  display-6 ">Painel Administrativo</h1>
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -48,6 +47,8 @@ require "../../back/core/include/admin/navbar-adm.php";
                                 <div class="col ">
                                     <label class="form-label float-start">Imagem Home</label>
                                     <input type="file" name="images" class="form-control" />
+                                    <label class="form-label float-start">Código Imóvel</label>
+                                    <input type="text" class="form-control" name="codigo" placeholder="Digite o código do Imóvel" />
                                     <label class="form-label float-start">Valor</label>
                                     <input type="text" class="form-control" name="valor" placeholder="Valor do Imóvel" />
                                     <label class="form-label float-start">Endereço</label>
@@ -113,7 +114,6 @@ require "../../back/core/include/admin/navbar-adm.php";
                                         <label class="form-label float-start">Descrição do Imóvel</label>
                                         <textarea rows="5" id="trumbowyg-demo" name="descricao"></textarea>
 
-                                       
                                     </div>
 
 
@@ -137,6 +137,7 @@ require "../../back/core/include/admin/navbar-adm.php";
                                 <div class="col p-3">
                                     <div class="p-2 bg-light d-flex flex-column justify-content-center align-items-start gap-1 shadow-sm">
                                         <img src="<?php echo URLIMGONE . $images ?>" alt="" style="max-width: 60px; ">
+                                        <span style="font-size: small; font-family: sans-serif;"><b>Cód Imóvel: </b><?php echo $cod_imovel ?></span>
                                         <span style="font-size: small; font-family: sans-serif;"><b>Valor</b> R$ <?php echo $valor_imovel ?></span>
                                         <span style="font-size: small; font-family: sans-serif;" class=""><b>End:</b> <?php echo $endereco;  ?> - <?php echo $num_casa ?> </span>
                                         <span style="font-size: small; font-family: sans-serif;" class="">Estado: <?php echo $estado ?> </span>

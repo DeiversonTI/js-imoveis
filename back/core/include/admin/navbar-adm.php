@@ -29,7 +29,7 @@ if (!isset($_SESSION)) {
           <?php
           if (isset($_SESSION['id']) and (isset($_SESSION['nome']))) {
             echo "<span style='color:#eee;'>Bem Vindo - <span> " . $_SESSION['nome'];
-          }else{
+          } else {
             echo "";
           }
           // echo $nome;
