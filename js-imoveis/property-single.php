@@ -15,8 +15,18 @@ $query_imgs->execute();
 $res = $query_imgs->fetchAll(PDO::FETCH_ASSOC);
 
 // RECUPERANDO A POSTAGEM DO USUÁRIO PELO ID
-$sel_img = "SELECT * FROM imoveis WHERE id=$dados LIMIT 1";
-$query_img = $conn->prepare($sel_img);
+// $sel_img = "SELECT * FROM imoveis WHERE id=$dados LIMIT 1";
+$query_imo =  "SELECT imo.id, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+FROM  imoveis As imo
+INNER JOIN images_imoveis_one As img 
+ON imo.id  = img.fk_id_imoveis
+INNER JOIN enderecos As ende
+ON ende.fk_id_imoveis=imo.id
+INNER JOIN sit_imoveis As sit
+ON sit.fk_id_imoveis=imo.id
+WHERE imo.id=$dados LIMIT 1";
+
+$query_img = $conn->prepare($query_imo);
 $query_img->execute();
 $result = $query_img->fetch(PDO::FETCH_ASSOC);
 // var_dump($result);
@@ -71,8 +81,8 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
           </div>
         </div>
         <div class="col-lg-4">
-          <h1 class="bg-light  py-3 px-1">Valor: <?php echo $result['valor'] ?></h1>
-          <h2 class="heading text-primary"><?php echo $result['endereco'] . ", " . $result['numero']; ?></h2>
+          <h1 class="bg-light  py-3 px-1">Valor: <?php echo $result['valor_imovel'] ?></h1>
+          <h2 class="heading text-primary"><?php echo $result['endereco'] . ", " . $result['num_casa']; ?></h2>
           <p class="meta"><?php echo $result['bairro'] . " - " . $result['estado']; ?></p>
           <div class="mb-4">
             <h6 class="heading text-primary">Carecterísticas</h6>
@@ -116,7 +126,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
             quam debitis, eum cumque perferendis, illum harum expedita.
           </p> -->
 
-          <div class="d-block agent-box p-5">
+          <div class="d-block agent-box p-5 mb-5">
             <div class="img mb-4">
               <img src="images/person_2-min.jpg" alt="Image" class="img-fluid" />
             </div>

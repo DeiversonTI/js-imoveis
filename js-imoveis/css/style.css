@@ -9824,7 +9824,8 @@ textarea {
 
 .section {
   padding-top: 4rem;
-  padding-bottom: 4rem; }
+  /* padding-bottom: 4rem; */
+ }
   .section .heading {
     font-weight: 500; }
     @media (max-width: 767.98px) {

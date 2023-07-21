@@ -17,14 +17,17 @@ $query_banner_imo->execute();
 $result = $query_banner_imo->fetch(PDO::FETCH_ASSOC);
 
 
-$query =  "SELECT imo.id, imo.valor, img.images, imo.endereco, imo.numero, imo.estado, imo.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao 
+$query =  "SELECT imo.id, ender.valor_imovel, img.images, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao 
   FROM  imoveis As imo
   INNER JOIN images_imoveis_one As img
-  ON imo.id  = img.fk_id_imoveis
-  ORDER BY id DESC LIMIT 40";
+  ON imo.id = img.fk_id_imoveis
+  INNER JOIN enderecos As ender 
+  ON ender.fk_id_imoveis=imo.id  
+  ORDER BY imo.id DESC LIMIT 40";
 $query_imo = $conn->prepare($query);
 $query_imo->execute();
 $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
+// var_dump($retorno);
 
 
 require "../.././js-imoveis/back/core/include/app/header.php";
@@ -44,19 +47,19 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
     </div>
     <div>
       <div class="text-center p-3 rounded" style=" background-color:rgba(255, 255, 255, .2) ;">
-        <form action="" class="py-4 rounded" style=" background-color: rgba(255, 255, 255, 1);">
+        <form action="search-comprar.php" method="post" class="py-4 rounded" style=" background-color: rgba(255, 255, 255, 1);">
 
           <div class="content__search px-2" style="gap: 5px;">
             <div class="b1 ">
               <!-- <label class="form-label">Pesquisar</label> -->
-              <input type="search" class=" inp_input" placeholder="Digite o nome da rua, bairro ou cidade" />
+              <input type="search" class=" inp_input" name="nome" placeholder="Digite o nome da rua, bairro ou cidade" />
             </div>
             <div class="b2  ">
               <!-- <label class="form-label float-start">Pretensão</label> -->
-              <select class="sel_input" name="tipo">
-                <option value="">Pretensão</option>
-                <option value="Alugar">Alugar</option>
+              <select class="sel_input" name="situacao">
+                <option value="">Situação</option>
                 <option value="Comprar">Comprar</option>
+                <option value="Alugar">Alugar</option>
               </select>
             </div>
             <div class="b2 ">
@@ -71,7 +74,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
               </select>
             </div>
             <div class="b3">
-              <input type="submit" class="inp_input btn_inp" value="Encontrar Imóveis" />
+              <input type="submit" class="inp_input btn_inp" value="Encontrar Imóveis" name="btnSearch" />
             </div>
           </div>
 
@@ -112,7 +115,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
                 </a>
 
                 <div class="property-content">
-                  <div class="price mb-2"><span>R$ <?php echo $valor; ?></span></div>
+                  <div class="price mb-2"><span>R$ <?php echo $valor_imovel; ?></span></div>
                   <div>
                     <span class="d-block mb-2 text-black-50"><?php echo $endereco; ?></span>
                     <span class="city d-block mb-3"><?php echo $bairro . ", " . $estado; ?></span>

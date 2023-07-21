@@ -13,7 +13,8 @@ Não: Projeto em Desenvolvimento
 
 ## Pendências
 - [] =  Criar um código para casa imovel criado (ex.: CBO254XN4)
-- [] =  Criar novas query na tabela imoveis (suite e vagas)
-- [] =  Instalar o editor Trumbowyg em cadastrar em novo imóvel e adicinar em editar.
+- [x] =  Criar novas colunas  na tabela imoveis (suite e vagas)
+- [x] =  Instalar o editor Trumbowyg em cadastrar em novo imóvel e adicinar em editar.
 - [] =  Criar Galeria de imagem em "ver detalhes" do bootstrap,  puxando todas as fotos do usuário vindo do banco.
 - [] =  Criar update de imagens em editar imóveis.
+- [x] =  Criar o pesquisar imóveis.

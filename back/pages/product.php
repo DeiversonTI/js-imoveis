@@ -9,14 +9,20 @@ require "../links.php";
 
 
 
-$query =  "SELECT imo.id, imo.valor, img.images, imo.endereco, imo.numero, imo.estado, imo.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao 
-  FROM  imoveis As imo
-  INNER JOIN images_imoveis_one As img
-  ON imo.id  = img.fk_id_imoveis
-  ORDER BY id DESC LIMIT 40";
+$query =  "SELECT imo.id, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+FROM  imoveis As imo
+INNER JOIN images_imoveis_one As img 
+ON imo.id  = img.fk_id_imoveis
+INNER JOIN enderecos As ende
+ON ende.fk_id_imoveis=imo.id
+ INNER JOIN sit_imoveis As sit
+  ON sit.fk_id_imoveis=imo.id
+ORDER BY imo.id DESC LIMIT 40";
+
 $query_imo = $conn->prepare($query);
 $query_imo->execute();
 $result = $query_imo->fetchAll(PDO::FETCH_ASSOC);
+
 
 require "../../back/core/include/admin/header-adm.php";
 require "../../back/core/include/admin/navbar-adm.php";
@@ -86,11 +92,8 @@ require "../../back/core/include/admin/navbar-adm.php";
                                     <input type="file" name="imagens[]" multiple class="form-control" />
                                 </div>
 
-                                <div class="row  ">
+                                <div class="row row-cols-1">
                                     <div class="col ">
-                                        <label class="form-label float-start">Descrição do Imóvel</label>
-                                        <textarea style="height: 100px" cols="50" name="descricao"></textarea>
-
                                         <label class="form-label float-start">Situação</label>
                                         <select class="form-select" name="situacao">
                                             <option value="">Selecionar</option>
@@ -106,7 +109,13 @@ require "../../back/core/include/admin/navbar-adm.php";
                                             <option value="Chácara">Chácara</option>
                                         </select>
                                     </div>
-                                    
+                                    <div class="col ">
+                                        <label class="form-label float-start">Descrição do Imóvel</label>
+                                        <textarea rows="5" id="trumbowyg-demo" name="descricao"></textarea>
+
+                                       
+                                    </div>
+
 
                                     <div style="width: 100%;" class="mt-2 col bg-body d-flex justify-content-center align-items-center ">
                                         <input type="submit" class="btn btn-primary px-5 py-2" value="Salvar Imóveis" name="btnSalvarImovel" />
@@ -128,8 +137,8 @@ require "../../back/core/include/admin/navbar-adm.php";
                                 <div class="col p-3">
                                     <div class="p-2 bg-light d-flex flex-column justify-content-center align-items-start gap-1 shadow-sm">
                                         <img src="<?php echo URLIMGONE . $images ?>" alt="" style="max-width: 60px; ">
-                                        <span style="font-size: small; font-family: sans-serif;"><b>Valor</b> R$ <?php echo $valor ?></span>
-                                        <span style="font-size: small; font-family: sans-serif;" class=""><b>End:</b> <?php echo $endereco;  ?> - <?php echo $numero ?> </span>
+                                        <span style="font-size: small; font-family: sans-serif;"><b>Valor</b> R$ <?php echo $valor_imovel ?></span>
+                                        <span style="font-size: small; font-family: sans-serif;" class=""><b>End:</b> <?php echo $endereco;  ?> - <?php echo $num_casa ?> </span>
                                         <span style="font-size: small; font-family: sans-serif;" class="">Estado: <?php echo $estado ?> </span>
                                         <span style="font-size: small; font-family: sans-serif;" class=""><b>Bairro:</b> <?php echo $bairro ?> </span>
                                         <div class=" d-flex  text-secondary">

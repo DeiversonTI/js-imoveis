@@ -15,28 +15,24 @@ require_once "../conn/conn.php";
 
 $dados_imovel = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
+
 if (!empty($dados_imovel['btnSalvarImovel'])) {
+
+    var_dump($dados_imovel);
 
     extract($dados_imovel);
 
     $res_imoveis = "INSERT INTO
-imoveis (valor, endereco, numero, estado, bairro, dormitorio, banheiro, suite, vagas, piscina, churrasqueira, descricao, situacao, tipo_imovel, created )
-VALUES (:valor, :endereco, :numero, :estado, :bairro, :dormitorio, :banheiro, :suite, :vagas, :piscina, :churrasqueira, :descricao, :situacao, :tipo_imovel, NOW())";
-    $result_db_imoveis = $conn->prepare($res_imoveis);
-    $result_db_imoveis->bindParam(':valor', $valor);
-    $result_db_imoveis->bindParam(':endereco', $endereco);
-    $result_db_imoveis->bindParam(':numero', $numero);
-    $result_db_imoveis->bindParam(':estado', $estado);
-    $result_db_imoveis->bindParam(':bairro', $bairro);
+imoveis ( dormitorio, banheiro, suite, vagas, piscina, churrasqueira, descricao,  created )
+VALUES ( :dormitorio, :banheiro, :suite, :vagas, :piscina, :churrasqueira, :descricao, NOW())";
+    $result_db_imoveis = $conn->prepare($res_imoveis);   
     $result_db_imoveis->bindParam(':dormitorio', $dormitorio);
     $result_db_imoveis->bindParam(':banheiro', $banheiro);
     $result_db_imoveis->bindParam(':suite', $suite);
     $result_db_imoveis->bindParam(':vagas', $vagas);
     $result_db_imoveis->bindParam(':piscina', $piscina);
-    $result_db_imoveis->bindParam(':churrasqueira', $churrasqueira);
+    $result_db_imoveis->bindParam(':churrasqueira', $churrasqueira);   
     $result_db_imoveis->bindParam(':descricao', $descricao);
-    $result_db_imoveis->bindParam(':situacao', $situacao);
-    $result_db_imoveis->bindParam(':tipo_imovel', $tipo_imovel);
     $res = $result_db_imoveis->execute();
 
     if ($result_db_imoveis->rowCount()) {
@@ -84,7 +80,26 @@ VALUES (:valor, :endereco, :numero, :estado, :bairro, :dormitorio, :banheiro, :s
             $result_db_imagens_one->bindParam(':images', $image_one);
             $result_db_imagens_one->bindParam(':fk_id_imoveis', $id_imoveis);
             $result_db_imagens_one->execute();
+           
         }
+
+        $sit_imoveis = "INSERT INTO sit_imoveis (situacao, tipo_imovel, fk_id_imoveis, created) VALUES (:situacao, :tipo_imovel, :fk_id_imoveis, NOW())";
+        $sit_imoveis_sits = $conn->prepare($sit_imoveis);
+        $sit_imoveis_sits->bindParam(':situacao', $situacao);
+        $sit_imoveis_sits->bindParam(':tipo_imovel', $tipo_imovel);
+        $sit_imoveis_sits->bindParam(':fk_id_imoveis', $id_imoveis);       
+        $sit_imoveis_sits->execute();
+
+        $end_imoveis = "INSERT INTO enderecos ( valor_imovel, endereco, num_casa, bairro, estado, fk_id_imoveis, created) 
+                                       VALUES ( :valor_imovel, :endereco, :num_casa, :bairro, :estado, :fk_id_imoveis, NOW())";
+        $end_imoveis_sits = $conn->prepare($end_imoveis);
+        $end_imoveis_sits->bindParam(':valor_imovel', $valor);
+        $end_imoveis_sits->bindParam(':endereco', $endereco);
+        $end_imoveis_sits->bindParam(':num_casa', $numero);
+        $end_imoveis_sits->bindParam(':bairro', $bairro);
+        $end_imoveis_sits->bindParam(':estado', $estado);
+        $end_imoveis_sits->bindParam(':fk_id_imoveis', $id_imoveis);            
+        $end_imoveis_sits->execute();
     }
      header("Location: ../pages/product.php ");
 }
