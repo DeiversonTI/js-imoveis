@@ -30,6 +30,8 @@ WHERE imo.id=$dados LIMIT 1";
 $query_img = $conn->prepare($query_imo);
 $query_img->execute();
 $result = $query_img->fetch(PDO::FETCH_ASSOC);
+
+$valor = number_format($result["valor_imovel"], 0, ".", ".");
 // var_dump($result);
 
 require "../.././js-imoveis/back/core/include/app/header.php";
@@ -69,6 +71,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
               <?php
               foreach ($result_imgs as $imgs) :
                 extract($imgs);
+                
               ?>
                 <img src="<?php echo URLIMOVEIS . $fk_id_imoveis . "/" . $images; ?>" alt="Image" class="img-fluid" />
               <?php
@@ -83,7 +86,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
         </div>
         <div class="col-lg-4">
           <p class="meta">Código do Imóvel: <?php echo $result['cod_imovel']; ?></p>
-          <h1 class="bg-light  py-3 px-1">Valor: <?php echo $result['valor_imovel'] ?></h1>
+          <h1 class="bg-light  py-3 px-1">Valor: <?php echo $valor ?></h1>
           <h2 class="heading text-primary"><?php echo $result['endereco'] . ", " . $result['num_casa']; ?></h2>
           <p class="meta"><?php echo $result['bairro'] . " - " . $result['estado']; ?></p>
           <div class="mb-4">

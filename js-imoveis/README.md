@@ -26,7 +26,7 @@ Não: Projeto em Desenvolvimento
 - [] =  Criar página, logo do site,  titulo do site, keywords, description, favicon, dentro do administrativo.
 - [] =  Criar pagina sobre dentro do administrativo.
 - [] =  Veficar possibilidade de deixar os links da navbar dinâmicos***.
-- [] =  Cadastrar o proprietário do Imóvel no administrativo(o corretor que faz o cadastro).
+- [] =  Cadastrar o proprietário do Imóvel no administrativo(o corretor que faz o cadastro) e atrelar ao imovel do cliente.
 - [] =  Criar script de imóvel mais visitado.
 - [] =  Criar script da pesquisa dentro do pesquisar, por imóvel mais barato, mais caro, mais visitado.
 - [] =  Criar links para cada serviço(link, cadastrar imoveis, link para upload de image logo, etc...) dentro do administrativo.

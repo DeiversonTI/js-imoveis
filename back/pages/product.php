@@ -132,13 +132,14 @@ require "../../back/core/include/admin/navbar-adm.php";
                             // $url_imoveis_one = "http://localhost/js-imoveis/back/img/img_one/";
                             foreach ($result as $retorno) :
                                 extract($retorno);
+                                $valor = number_format($valor_imovel, 0, ".", ".");
 
                             ?>
                                 <div class="col p-3">
                                     <div class="p-2 bg-light d-flex flex-column justify-content-center align-items-start gap-1 shadow-sm">
                                         <img src="<?php echo URLIMGONE . $images ?>" alt="" style="max-width: 60px; ">
                                         <span style="font-size: small; font-family: sans-serif;"><b>Cód Imóvel: </b><?php echo $cod_imovel ?></span>
-                                        <span style="font-size: small; font-family: sans-serif;"><b>Valor</b> R$ <?php echo $valor_imovel ?></span>
+                                        <span style="font-size: small; font-family: sans-serif;"><b>Valor</b> R$ <?php echo $valor ?></span>
                                         <span style="font-size: small; font-family: sans-serif;" class=""><b>End:</b> <?php echo $endereco;  ?> - <?php echo $num_casa ?> </span>
                                         <span style="font-size: small; font-family: sans-serif;" class="">Estado: <?php echo $estado ?> </span>
                                         <span style="font-size: small; font-family: sans-serif;" class=""><b>Bairro:</b> <?php echo $bairro ?> </span>

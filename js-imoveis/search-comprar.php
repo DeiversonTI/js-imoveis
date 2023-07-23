@@ -3,18 +3,127 @@
 require_once ".././back/conn/conn.php";
 
 $search = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+// var_dump($search);
 
 
 if (!empty($search['btnSearch'])) {
     // var_dump($search);
 
-
     $tipo = "%" . $search['tipo'] . "%";
     $sit = "%" . $search['situacao'] . "%";
     $nome = "%" . $search['nome'] . "%";
 
+    // SISTEMA PESQUISAR(BUSCA PELA COLUNA DA TABELA ESPECIFICA)
 
-    //NOVO - O BUSCAR SÓ ESTA PESQUISANDO POR ENDEREÇO, PRECISO PESQUISAR POR MAIS OPÇÕES, EX. BAIRRO, ESTADO, VALOR..
+    if ((!empty($search['nome'])) and (empty($search['situacao'])) and (empty($search['tipo']))) {
+
+    $query =  "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+    FROM  imoveis As imo
+
+    INNER JOIN images_imoveis_one As img 
+    ON imo.id  = img.fk_id_imoveis
+
+    INNER JOIN enderecos As ende
+    ON ende.fk_id_imoveis=imo.id
+
+    INNER JOIN sit_imoveis As sit
+    ON sit.fk_id_imoveis=imo.id
+
+    WHERE ende.endereco LIKE :nome    
+    OR imo.cod_imovel LIKE :nome
+    OR ende.valor_imovel LIKE :nome
+    OR ende.bairro LIKE :nome
+    OR ende.estado LIKE :nome
+
+    ORDER BY imo.id DESC LIMIT 40";
+
+    $query_imo = $conn->prepare($query);
+    $query_imo->bindParam(":nome", $nome);
+    $query_imo->execute();
+    $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($retorno);
+
+    $uid = $query_imo->rowCount();
+    } elseif ((empty($search['nome'])) and (!empty($search['situacao'])) and (empty($search['tipo']))) {
+
+    $query =  "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+    FROM  imoveis As imo
+
+    INNER JOIN images_imoveis_one As img 
+    ON imo.id  = img.fk_id_imoveis
+
+    INNER JOIN enderecos As ende
+    ON ende.fk_id_imoveis=imo.id
+
+    INNER JOIN sit_imoveis As sit
+    ON sit.fk_id_imoveis=imo.id
+
+    WHERE sit.situacao LIKE :situacao    
+
+    ORDER BY imo.id DESC LIMIT 40";
+
+    $query_imo = $conn->prepare($query);
+    $query_imo->bindParam(":situacao", $sit);
+    $query_imo->execute();
+    $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($retorno);
+
+    $uid = $query_imo->rowCount();
+    } elseif ((empty($search['nome'])) and (empty($search['situacao'])) and (!empty($search['tipo']))) {
+
+    $query =  "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+    FROM  imoveis As imo
+
+    INNER JOIN images_imoveis_one As img 
+    ON imo.id  = img.fk_id_imoveis
+
+    INNER JOIN enderecos As ende
+    ON ende.fk_id_imoveis=imo.id
+
+    INNER JOIN sit_imoveis As sit
+    ON sit.fk_id_imoveis=imo.id
+
+    WHERE sit.tipo_imovel LIKE :tipo     
+
+    ORDER BY imo.id DESC LIMIT 40";
+
+    $query_imo = $conn->prepare($query);
+    $query_imo->bindParam(":tipo", $tipo);
+    $query_imo->execute();
+    $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($retorno);
+
+    $uid = $query_imo->rowCount();
+    } elseif ((empty($search['nome'])) and (!empty($search['situacao'])) and (!empty($search['tipo']))) {
+
+        $query =  "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+    FROM  imoveis As imo
+
+    INNER JOIN images_imoveis_one As img 
+    ON imo.id  = img.fk_id_imoveis
+
+    INNER JOIN enderecos As ende
+    ON ende.fk_id_imoveis=imo.id
+
+    INNER JOIN sit_imoveis As sit
+    ON sit.fk_id_imoveis=imo.id
+
+    WHERE sit.situacao LIKE :situacao 
+    AND sit.tipo_imovel LIKE :tipo   
+        
+
+    ORDER BY imo.id DESC LIMIT 40";
+
+    $query_imo = $conn->prepare($query);
+    $query_imo->bindParam(":situacao", $sit);
+    $query_imo->bindParam(":tipo", $tipo);
+    $query_imo->execute();
+    $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($retorno);
+
+    $uid = $query_imo->rowCount();
+    } else {
+
     $query =  "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
     FROM  imoveis As imo
 
@@ -29,28 +138,20 @@ if (!empty($search['btnSearch'])) {
 
     WHERE sit.situacao LIKE :situacao 
     AND sit.tipo_imovel LIKE :tipo   
-    AND ende.endereco LIKE :nome_ende
-    -- OR imo.cod_imovel LIKE :nome_est
-    -- OR ende.valor_imovel LIKE :nome_val
-    -- OR ende.bairro LIKE :nome_bai
-    -- OR ende.estado LIKE :nome_est
-
+    AND ende.endereco LIKE :nome
+   
     ORDER BY imo.id DESC LIMIT 40";
 
+        $query_imo = $conn->prepare($query);
+        $query_imo->bindParam(":situacao", $sit);
+        $query_imo->bindParam(":tipo", $tipo);
+        $query_imo->bindParam(":nome", $nome);
+        $query_imo->execute();
+        $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
+        // var_dump($retorno);
 
-    $query_imo = $conn->prepare($query);
-    $query_imo->bindParam(":situacao", $sit);
-    $query_imo->bindParam(":tipo", $tipo);
-    $query_imo->bindParam(":nome_ende", $nome);
-    // $query_imo->bindParam(":nome_est", $nome);
-    // $query_imo->bindParam(":nome_bai", $nome, PDO::PARAM_STR);
-    // $query_imo->bindParam(":nome_val", $nome, PDO::PARAM_STR);
-    $query_imo->execute();
-    $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
-
-    // var_dump($retorno);
-
-    $uid = $query_imo->rowCount();
+        $uid = $query_imo->rowCount();
+    }
 }
 
 require "../.././js-imoveis/back/core/include/app/header.php";
@@ -66,7 +167,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item active text-white-300" aria-current="page">
                     Buscar Imóveis
-                </li>
+                </li>                
             </span>
         </nav>
     </div>
@@ -353,15 +454,25 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
 </div>
 <!-- </div> -->
 <div class="container mx-auto my-3 ">
-    <div class="text-end pl-1">
-        <select class="py-2" name="" id="">
-            <option value="Maior Valor">Maior Valor</option>
-            <option value="Menor Valor">Menor Valor</option>
-            <option value="Recente">Recente</option>
-            <!-- <option value="Menor Valor">Menor Valor</option> -->
-        </select>
+    <?php
+    if (empty($retorno)) {
+        $retorno = [];
+        echo "Nenhum Imóvel aqui";
+    } else { ?>
 
-    </div>
+
+        <div class="text-end pl-1">
+            <select class=" py-2" name="" id="" onchange="changeValuesSearch(value)">
+                <option value="" selected>Pesquisar</option>
+                <option value="Maior_Valor" id="Valor">Maior Valor</option>
+                <option value="Menor_Valor" id="Valor">Menor Valor</option>
+                <option value="Mais_Visto" id="Valor">Mais Visto</option>
+                <!-- <option value="Menor Valor">Menor Valor</option> -->
+            </select>
+        </div>
+    <?php } ?>
+
+
 </div>
 
 <div class=" section-properties">
@@ -369,8 +480,14 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
     <div class="container">
         <div class="row">
             <?php
+            // if(empty($retorno)){
+            //     $retorno = [];
+            //     echo "vazio";                
+            // }
             foreach ($retorno as $resp) :
                 extract($resp);
+
+                $valor = number_format($valor_imovel, 0, ".",".");
             ?>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                     <div class="bg-info property-item mb-30">
@@ -386,7 +503,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
                                         Código Imóvel: <?php echo $cod_imovel; ?>
                                     </span>
                                 </div>
-                                <div class="price mb-2"><span>R$ <?php echo $valor_imovel; ?></span></div>
+                                <div class="price mb-2"><span>R$ <?php echo $valor; ?></span></div>
                                 <div>
                                     <span class="d-block mb-2 text-black-50"><?php echo $endereco; ?></span>
                                     <span class="city d-block mb-3"><?php echo $bairro . ", " . $estado; ?></span>

@@ -60,7 +60,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
               <select class="sel_input" name="situacao">
                 <option value="">Situação</option>
                 <option value="Comprar">Comprar</option>
-                <option value="Alugar">Alugar</option>
+                <option value="Vender">Vender</option>
               </select>
             </div>
             <div class="b2 ">
@@ -107,6 +107,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
             foreach ($retorno as $resp) :
 
               extract($resp);
+              $valor = number_format($valor_imovel, 0, ".", ".");
 
             ?>
 
@@ -117,7 +118,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
 
                 <div class="property-content">
                   <div>Código do Imóvel: <?php echo $cod_imovel; ?></div>
-                  <div class="price mb-2"><span>R$ <?php echo $valor_imovel; ?></span></div>
+                  <div class="price mb-2"><span>R$ <?php echo $valor; ?></span></div>
                   <div>
                     <span class="d-block mb-2 text-black-50"><?php echo $endereco; ?></span>
                     <span class="city d-block mb-3"><?php echo $bairro . ", " . $estado; ?></span>

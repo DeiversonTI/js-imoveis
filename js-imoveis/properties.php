@@ -21,6 +21,7 @@ $query_imo = $conn->prepare($query);
 $query_imo->execute();
 $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
 
+
 $contador_imoveis = $query_imo->rowCount();
 
 var_dump($contador_imoveis);
@@ -65,6 +66,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
             foreach ($retorno as $resp) :
 
               extract($resp);
+              $valor = number_format($valor_imovel, 0, ".", ".");
 
             ?>
 
@@ -75,7 +77,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
 
                 <div class="property-content">
                   <div>Código do Imóvel: <?php echo $cod_imovel; ?></div>
-                  <div class="price mb-2"><span>R$ <?php echo $valor_imovel; ?></span></div>
+                  <div class="price mb-2"><span>R$ <?php echo $valor; ?></span></div>
                   <div>
                     <span class="d-block mb-2 text-black-50"><?php echo $endereco; ?></span>
                     <span class="city d-block mb-3"><?php echo $bairro . ", " . $estado; ?></span>
@@ -341,6 +343,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
       foreach ($retorno as $resp) :
 
         extract($resp);
+        $valor_one = number_format($valor_imovel, 0, ".", ".");
 
       ?>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
@@ -352,7 +355,7 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
 
               <div class="property-content">
                 <div>Código do Imóvel: <?php echo $cod_imovel; ?></div>
-                <div class="price mb-2"><span>R$ <?php echo $valor_imovel; ?></span></div>
+                <div class="price mb-2"><span>R$ <?php echo $valor_one; ?></span></div>
                 <div>
                   <span class="d-block mb-2 text-black-50"><?php echo $endereco; ?></span>
                   <span class="city d-block mb-3"><?php echo $bairro . ", " . $estado; ?></span>
