@@ -1,9 +1,16 @@
 <?php
-require_once ".././back/conn/conn.php";
-require ".././back/Links.php";
+require_once ("../back/conn/conn.php");
+require ("../back/Links.php");
 
 
 // O LOGO ESTÁ VINDO DO BANCO E ADICIONADO NO HEADER, AGORA SÓ CHAMAR A VARIAVEL $URL QUE A IMAGEM APARECE ONDE QUISER
+$query_five =  "SELECT * FROM title LIMIT 1";
+$query_banner_five = $conn->prepare($query_five);
+$query_banner_five->execute();
+$res_five = $query_banner_five->fetch(PDO::FETCH_ASSOC);
+// var_dump($res_five);
+
+
 $query_logo =  "SELECT * FROM logo ORDER BY id DESC LIMIT 1";
 $query_banner_logo = $conn->prepare($query_logo);
 $query_banner_logo->execute();
@@ -28,13 +35,13 @@ if ($res) {
   <meta name="author" content="Untree.co" />
 
   <!-- O FAVICON VAI VIR DO BANCO DE DADOS -->
-  <link  rel="shortcut icon" href="<?php echo $url; ?>" />
+  <link  rel="shortcut icon" href="<?php echo URLFAVICON . $res_five['img_fivecon']; ?>" />
 
   <!-- O DESCRIPTION VAI VIR DO BANCO DE DADOS -->
-  <meta name="description" content="" />
+  <meta name="description" content="<?php echo $res_five['descript']?>" />
 
   <!-- O KEYWORDS VAI VIR DO BANCO DE DADOS -->
-  <meta name="keywords" content="bootstrap, bootstrap5" />
+  <meta name="keywords" content="<?php echo $res_five['keywords']?>" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,7 +60,7 @@ if ($res) {
 
   <!-- O TITLE VAI VIR DO BANCO DE DADOS -->
   <title>
-    JS Imóveis - Assessoria Imobiliária
+    <?php echo $res_five['title_site']?>
   </title>
 </head>
 

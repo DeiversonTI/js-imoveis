@@ -6,7 +6,7 @@ ob_start();
 require_once "../conn/conn.php";
 
 // ASSIM QUE DER POR ESSE LINK DENTRO DO ADMIN-HEADER PARA FICAR GLOBAL
-require "../links.php";
+// require "../links.php";
 
 $query = "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
 FROM  imoveis As imo

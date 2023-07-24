@@ -1,10 +1,11 @@
 <?php
 
-require_once ".././back/conn/conn.php";
+// require_once ".././back/conn/conn.php";
 
 $search = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 // var_dump($search);
-
+require "../back/core/app/header.php";
+require "../back/core/app/navbar.php";
 
 if (!empty($search['btnSearch'])) {
     // var_dump($search);
@@ -154,8 +155,7 @@ if (!empty($search['btnSearch'])) {
     }
 }
 
-require "../.././js-imoveis/back/core/include/app/header.php";
-require "../.././js-imoveis/back/core/include/app/navbar.php";
+
 
 ?>
 
@@ -897,4 +897,4 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
     </div>
 </div>
 
-<?php require "../.././js-imoveis/back/core/include/app/footer.php" ?>
+<?php require "../back/core/app/footer.php" ?>

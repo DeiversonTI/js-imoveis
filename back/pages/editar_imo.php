@@ -1,10 +1,10 @@
 <?php
 
-require_once "../conn/conn.php";
-require "../Links.php";
+// require_once "../conn/conn.php";
+// require "../Links.php";
 
 $id = $_GET['id'];
-
+require "../core/admin/header-adm.php";
 
 $query_mani =  "SELECT imo.id, imo.cod_imovel, ender.valor_imovel, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
   FROM  imoveis As imo
@@ -31,13 +31,13 @@ $result_img = $query_img_imo->fetch(PDO::FETCH_ASSOC);
 // var_dump(URLIMOVEIS . $id . "/" . $result_img['images']);
 
 
-require "../../back/core/include/admin/header-adm.php";
+
 ?>
 
 <div class="container col-6 border border-1 p-5">
     <div class="d-flex justify-content-between align-items-center">
         <h1>Atualizar Imóvel</h1>
-        <a class="btn btn-outline-danger" href="../pages/product.php">Voltar</a>
+        <a class="btn btn-outline-danger" href="../pages/index.php">Voltar</a>
     </div>
 
 
@@ -125,4 +125,4 @@ require "../../back/core/include/admin/header-adm.php";
     </form>
 </div>
 
-<?php require "../../back/core/include/admin/footer-adm.php"; ?>
+<?php require "../core/admin/footer-adm.php"; ?>

@@ -59,8 +59,8 @@ if (!empty($dados_imovel['btnSalvarImovel'])) {
 
     if ($res_end) {
         $_SESSION['msg'] = "<div style='margin-bottom:1rem; width: 100%; background-color:#D1E7DD; color: #0a3622; padding: 1rem; border: 1px solid #a3cfbb; border-radius:8px;'>Atualizado com Sucesso!</div>";
-        header("Location: ../pages/product.php ");       
+        header("Location: ../pages/index.php ");       
     }
 }
 
-header("Location: ../pages/product.php ");
+header("Location: ../pages/index.php ");

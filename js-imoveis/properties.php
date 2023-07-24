@@ -1,6 +1,8 @@
 <?php
 
-require_once ".././back/conn/conn.php";
+// require_once ".././back/conn/conn.php";
+require "../back/core/app/header.php";
+require "../back/core/app/navbar.php";
 
 //NOVO - O BUSCAR SÓ ESTA PESQUISANDO POR ENDEREÇO, PRECISO PESQUISAR POR MAIS OPÇÕES, EX. BAIRRO, ESTADO, VALOR..
 $query =  "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
@@ -24,10 +26,9 @@ $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
 
 $contador_imoveis = $query_imo->rowCount();
 
-var_dump($contador_imoveis);
+// var_dump($contador_imoveis);
 
-require "../.././js-imoveis/back/core/include/app/header.php";
-require "../.././js-imoveis/back/core/include/app/navbar.php";
+
 ?>
 
 <div class="hero page-inner overlay" style="background-image: url('images/hero_bg_1.jpg')">
@@ -745,4 +746,4 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
   </div>
 </div>
 
-<?php require "../.././js-imoveis/back/core/include/app/footer.php" ?>
+<?php require "../back/core/app/footer.php" ?>

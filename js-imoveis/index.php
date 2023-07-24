@@ -7,8 +7,8 @@
 <?php
 session_start();
 ob_start();
-
-require_once ".././back/conn/conn.php";
+require "../back/core/app/header.php";
+// require "../back/conn/conn.php";
 
 $query_banner =  "SELECT * FROM mani_banner LIMIT 1";
 $query_banner_imo = $conn->prepare($query_banner);
@@ -30,8 +30,8 @@ $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-require "../.././js-imoveis/back/core/include/app/header.php";
-require "../.././js-imoveis/back/core/include/app/navbar.php";
+
+require "../back/core/app/navbar.php";
 ?>
 
 <div class="hero position-relative">
@@ -647,4 +647,4 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
   </div>
 </div>
 
-<?php require "../.././js-imoveis/back/core/include/app/footer.php" ?>
+<?php require "../back/core/app/footer.php" ?>

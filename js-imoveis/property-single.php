@@ -3,7 +3,10 @@
 session_start();
 ob_start();
 
-require_once ".././back/conn/conn.php";
+require "../back/core/app/header.php";
+require "../back/core/app/navbar.php";
+
+// require_once ".././back/conn/conn.php";
 // require "../back/Links.php";
 
 $dados = filter_input(INPUT_GET, 'id', FILTER_DEFAULT);
@@ -34,8 +37,7 @@ $result = $query_img->fetch(PDO::FETCH_ASSOC);
 $valor = number_format($result["valor_imovel"], 0, ".", ".");
 // var_dump($result);
 
-require "../.././js-imoveis/back/core/include/app/header.php";
-require "../.././js-imoveis/back/core/include/app/navbar.php";
+
 ?>
 <div class="">
   <div>
@@ -277,4 +279,4 @@ require "../.././js-imoveis/back/core/include/app/navbar.php";
     </div>
   </div>
 </div>
-<?php require "../.././js-imoveis/back/core/include/app/footer.php" ?>
+<?php require "../back/core/app/footer.php" ?>

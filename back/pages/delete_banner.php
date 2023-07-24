@@ -15,12 +15,12 @@ $retorno = $res_del->execute();
 
 if($retorno){
     $_SESSION['msg'] = "<div style='margin-bottom:1rem; width: 100%; background-color:#F8D7DA; color: #B8521C; padding: 1rem; border: 1px solid #F1AEB5; border-radius:8px;'>Deletado com sucesso!!</div>";
-    header("Location: ../pages/product.php ");
+    header("Location: ../pages/index.php ");
     exit;
 
 }else{
     $_SESSION['msg'] = "<div style='margin-bottom:1rem; width: 100%; background-color:#F8D7DA; color: #B8521C; padding: 1rem; border: 1px solid #F1AEB5; border-radius:8px;'>NÃO DELETADO com sucesso!!</div>";
     // $_SESSION['msg'] = "<p style='color: red'>NÃO DELETADO com sucesso!</p>";
-    header("Location: ../pages/product.php ");
+    header("Location: ../pages/index.php ");
     exit;
 }

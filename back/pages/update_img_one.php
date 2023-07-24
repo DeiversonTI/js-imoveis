@@ -37,6 +37,6 @@ $retorno = $res_del->execute();
  if($result_db_id->rowCount()){
 
     $_SESSION['msg'] = "<div style='margin-bottom:1rem; width: 100%; background-color:#D1E7DD; color: #0a3622; padding: 1rem; border: 1px solid #a3cfbb; border-radius:8px;'>Selecionado com Sucesso!</div>";
-    header("Location: ../admin/index.php ");
+    header("Location: ../pages/index.php ");
  
 } 

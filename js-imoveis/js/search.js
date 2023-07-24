@@ -1,4 +1,5 @@
 
+// PRECISO ENVIAR OS DADOS PARA O PHP, NÃO ESTOU CONSEGUINDO, FAREI ISSO MAIS TARDE.
 
 async function changeValuesSearch(value) {
 

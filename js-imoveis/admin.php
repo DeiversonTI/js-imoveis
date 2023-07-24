@@ -38,7 +38,7 @@ if (!empty($dados['btnLogar'])) {
                 $_SESSION['nivel'] = $res['nivel_acesso'];
                 $retorna = ["msg" => false, "dados" => $res];
                 $_SESSION['msg'] = "<div style='margin-bottom:1rem; width: 100%; background-color:#D1E7DD; color: #0a3622; padding: 1rem; border: 1px solid #a3cfbb; border-radius:8px;'>Logado com Sucesso!</div>";
-                header("Location: ../back/admin/index.php ");
+                header("Location: ../back/pages/index.php ");
             } else {
                 $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Login ou Senha Inválidas!</div>";
             }

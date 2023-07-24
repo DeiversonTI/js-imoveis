@@ -15,11 +15,11 @@ $retorno = $res_del->execute();
 
 if($retorno){
     $_SESSION['img_one'] = "<div class='alert alert-danger' role='alert'>Banner deletado com sucesso!!</div>";
-    header("Location: ../admin/index.php ");
+    header("Location: ../pages/index.php ");
     exit;
 
 }else{
     $_SESSION['img_one'] = "<div class='alert alert-danger' role='alert'>ERRO: Banner não deletado!!</div>";
-    header("Location: ../admin/index.php ");
+    header("Location: ../pages/index.php ");
     exit;
 }

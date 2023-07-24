@@ -92,5 +92,5 @@ VALUES ( :cod_imovel, :dormitorio, :banheiro, :suite, :vagas, :piscina, :churras
         $end_imoveis_sits->bindParam(':fk_id_imoveis', $id_imoveis);            
         $end_imoveis_sits->execute();
     }
-     header("Location: ../pages/product.php ");
+     header("Location: ../pages/index.php ");
 }
