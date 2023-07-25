@@ -1,15 +1,48 @@
+/* configuração para dark do site */
+:root{
+    --dark-bg: #00001a;
+    --dark-box: #002e46;
+    --dark-font: #c3ecff;
+    --dark-table: #ced3de;
+}
+
 .img_preview_banner {
     width: 150px;
 }
 .img_preview_logo {
     width: 120px;
 }
-
-/* .__gaps{
-    margin: 5px 0px;
-  
+/* textarea{
+    color: var(--dark-font);
 } */
 
+.dark_color{
+    background-color: var(--dark-box);
+    border:  0 !important;
+}
+.dark_color table,
+.dark_color th,
+.dark_color td {
+    border: 1px solid var(--dark-font);
+    border-collapse: collapse;
+    padding: 10px 0;
+}
+
+.light_mode th, .light_mode td, .light_mode table{
+    padding: 10px 0;
+    border: 1px solid var(--dark-table);
+
+}
+
+.dark_color th,
+.dark_color td {
+    background-color: var(--dark-box);
+  }
+
+.dark_color_body{
+    background-color: var(--dark-bg); 
+    color: var(--dark-font)
+}
 .caption_adm {
     /* padding-top: 0.5rem;
     padding-bottom: 0.5rem; */

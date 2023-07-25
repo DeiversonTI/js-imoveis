@@ -38,6 +38,25 @@ function previewLogo() {
 }
 
 
+// EFEITO DARK MODE
+function selDark(event){
+    const selDarkBody = document.querySelector("#darkColorBody");
+    const selDark = document.querySelectorAll("#darkModeColor");
+
+    if(event.target.checked){
+        selDark.forEach((res)=>{      
+            res.classList.remove("dark_color")
+        })    
+        selDarkBody.classList.remove("dark_color_body")
+    }else{
+        selDark.forEach((res)=>{      
+            res.classList.add("dark_color")
+        })          
+        selDarkBody.classList.add("dark_color_body")
+    }   
+}
+
+
 var flexCheckDefault = document.querySelector("input[id='flexCheckDefault']");
  
 function ckecked(event) {

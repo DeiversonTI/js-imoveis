@@ -30,23 +30,24 @@ $result_img = $query_img_imo->fetch(PDO::FETCH_ASSOC);
 
 // var_dump(URLIMOVEIS . $id . "/" . $result_img['images']);
 
-
+require "../core/admin/navbar-adm.php";
 
 ?>
 
-<div class="container col-6 border border-1 p-5">
+<div id="darkModeColor" class="col col-xl-6 dark_color container border border-1 p-5">
     <div class="d-flex justify-content-between align-items-center">
         <h1>Atualizar Imóvel</h1>
         <a class="btn btn-outline-danger" href="../pages/index.php">Voltar</a>
     </div>
 
 
-    <form action="../model/upt_imoveis.php" method="post" class="p-2" enctype="multipart/form-data">
+    <form action="../model/upt_imoveis.php" method="post" class="" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
-        <div class=" g-2">
-            <div class="col ">
-                <label class="form-label float-start">Imagem Home</label><br><br>
-                <img class="float-start" src="<?php echo URLIMGONE . $result_img['images']; ?>" alt="" style="max-width: 200px; margin-bottom: 15px;">
+        <div class="row row-cols-1 row-cols-xl-2 ">
+            <div class="col col-lg-6">
+                <!-- <label class="form-label float-start">Imagem Home</label><br><br> -->
+                <!-- <img class="float-start" src="<?php echo URLIMGONE . $result_img['images']; ?>" alt="" style="max-width: 200px; margin-bottom: 15px;"> -->
+                <label class="form-label float-start">Upload da Imagem</label>
                 <input type="file" name="images" class="form-control" />
                 <label class="form-label float-start">Código do Imóvel</label>
                 <input type="text" class="form-control" value="<?php echo $cod_imovel; ?>" name="codigo" placeholder="Código do Imóvel" />
@@ -60,10 +61,16 @@ $result_img = $query_img_imo->fetch(PDO::FETCH_ASSOC);
                 <input type="text" class="form-control" name="bairro" value="<?php echo $estado; ?>" placeholder="Bairro do Imóvel" />
                 <label class="form-label float-start">Estado</label>
                 <input type="text" class="form-control" name="estado" value="<?php echo $bairro; ?>" placeholder="Estado do Imóvel" />
-
+                <label class="form-label float-start">Situação</label>
+                    <select class="form-select" name="situacao">
+                        <option value="<?php echo $situacao; ?>"><?php echo $situacao; ?></option>
+                        <option value="comprar">Comprar</option>
+                        <option value="Vender">Vender</option>
+                    </select>
             </div>
+           
 
-            <div class="col">
+            <div class="col col-lg-6">
                 <label class="form-label float-start">Dormitório</label>
                 <input type="number" class="form-control" value="<?php echo $dormitorio; ?>" name="dormitorio" placeholder="Número de Dormitório">
 
@@ -92,17 +99,7 @@ $result_img = $query_img_imo->fetch(PDO::FETCH_ASSOC);
 
                 <label class="form-label float-start">Imagem</label>
                 <input type="file" name="imagens[]" multiple class="form-control" />
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <label class="form-label float-start">Situação</label>
-                    <select class="form-select" name="situacao">
-                        <option value="<?php echo $situacao; ?>"><?php echo $situacao; ?></option>
-                        <option value="comprar">Comprar</option>
-                        <option value="Vender">Vender</option>
-                    </select>
-                    <label class="form-label float-start">Tipo do Imóvel</label>
+                <label class="form-label float-start">Tipo do Imóvel</label>
                     <select class="form-select" name="tipo_imovel">
                         <option value="<?php echo $tipo_imovel; ?>"><?php echo $tipo_imovel; ?></option>
                         <option value="Casa">Casa</option>
@@ -110,16 +107,15 @@ $result_img = $query_img_imo->fetch(PDO::FETCH_ASSOC);
                         <option value="Sítio">Sítio</option>
                         <option value="Chácara">Chácara</option>
                     </select>
+            </div>
+        </div>
+        <div class="col"> 
+            <div>
                     <label class="form-label float-start">Descrição do Imóvel</label><br>
-                    <textarea id="trumbowyg-demo" name="descricao">value="<?php echo $descricao; ?>"</textarea>
-
-
-                    <div style="width: 100%;" class="mt-2 col bg-body d-flex justify-content-center align-items-center ">
-                        <input type="submit" class="btn btn-primary px-5 py-2" value="Atualizar Imóveis" name="btnSalvarImovel" />
-                    </div>
-
-                </div>
-
+                <textarea class="" id="trumbowyg-demo" name="descricao"><?php echo $descricao; ?></textarea>
+            </div>
+            <div style="width: 100%;" class="mt-2 col  d-flex justify-content-center align-items-center ">
+                <input type="submit" class="btn btn-primary px-5 py-2" value="Atualizar Imóveis" name="btnSalvarImovel" />
             </div>
         </div>
     </form>

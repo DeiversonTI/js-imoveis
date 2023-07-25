@@ -44,6 +44,7 @@ if ($res) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../.././js-imoveis/fonts/icomoon/style.css" />
   <link rel="stylesheet" href="../.././back/dist/ui/trumbowyg.min.css">
+  <link rel="stylesheet" href="../.././back/dist/plugins/colors/ui/trumbowyg.colors.min.css">
   <!-- <link rel="stylesheet" href="../.././js-imoveis/fonts/flaticon/font/flaticon.css" /> -->
   <link rel="stylesheet" href="../.././js-imoveis/css/adm-style.css" />
   <title>
@@ -51,5 +52,7 @@ if ($res) {
   </title>
 </head>
 
-<body>
+<!-- PALETA DE CORES DARK #071135, #0b1a43 , #071135, #252e37, #040928, #00001a-->
+<!-- PALETA DE CORES LIGHT #eeffff, #4473bd, #a2d9ff, #c3ecff -->
+<body id="darkColorBody" class="dark_color_body" style="overflow-y: scroll;">
  

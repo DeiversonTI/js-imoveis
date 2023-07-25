@@ -19,17 +19,19 @@ Não: Projeto em Desenvolvimento
 - [] =  Criar Galeria de imagem em "ver detalhes" do bootstrap,  puxando todas as fotos do usuário vindo do banco.
 - [] =  Criar update de imagens em editar imóveis.
 - [x] =  Criar o pesquisar imóveis.
-- [] =  Corrigir a pagina cadastrar produtos(os inputs um ao lado do outros, otimizar o máximo).
-- [] =  Corrigir a pagina atualizar produtos(os inputs, por os itens um ao lado do outro para melhor aproveitamento).
+- [x] =  Corrigir a pagina cadastrar produtos(os inputs um ao lado do outros, otimizar o máximo).
+- [x] =  Corrigir a pagina atualizar produtos(os inputs, por os itens um ao lado do outro para melhor aproveitamento).
 - [] =  Criar a página do contato(footer) do admin.
 - [] =  Criar e configurar email no admin.
-- [] =  Criar página, logo do site,  titulo do site, keywords, description, favicon, dentro do administrativo.
+- [x] =  Criar página, logo do site,  titulo do site, keywords, description, favicon, dentro do administrativo.
 - [] =  Criar pagina sobre dentro do administrativo.
-- [] =  Veficar possibilidade de deixar os links da navbar dinâmicos***.
-- [] =  Cadastrar o proprietário do Imóvel no administrativo(o corretor que faz o cadastro) e atrelar ao imovel do cliente.
+- [] =  Verificar possibilidade de deixar os links da navbar dinâmicos***.
+- [] =  Cadastrar o proprietário do Imóvel no administrativo(o corretor que faz o cadastro) e atrelar ao imóvel do cliente.
 - [] =  Criar script de imóvel mais visitado.
 - [] =  Criar script da pesquisa dentro do pesquisar, por imóvel mais barato, mais caro, mais visitado.
-- [] =  Criar links para cada serviço(link, cadastrar imoveis, link para upload de image logo, etc...) dentro do administrativo.
+- [] =  Adicionar require nos inputs.
+- [] =  Adicionar uma coluno area do imóvel na tabela imoveis.
+- [x] =  Criar links para cada serviço(link, cadastrar imoveis, link para upload de image logo, etc...) dentro do administrativo.
 
 
 

@@ -39,20 +39,35 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
     // conta quantas imagens tem no banco
     $count_banner = $query_banner->rowCount();
 
-    $res_banner = $query_banner->fetchAll(PDO::FETCH_ASSOC);
+    $res_ban = $query_banner->fetchAll(PDO::FETCH_ASSOC);
     // var_dump($result);
+
+    // LISTA DE IMOVEIS VINDO DE DIVERSAS TABELAS VIA INNER JOIN
+    $query = "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+    FROM  imoveis As imo
+    INNER JOIN images_imoveis_one As img 
+    ON imo.id  = img.fk_id_imoveis
+    INNER JOIN enderecos As ende
+    ON ende.fk_id_imoveis=imo.id
+    INNER JOIN sit_imoveis As sit
+    ON sit.fk_id_imoveis=imo.id
+    ORDER BY imo.id DESC LIMIT 40";
+
+    $query_imo = $conn->prepare($query);
+    $query_imo->execute();
+    $res_imoveis = $query_imo->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
     <div>
-        <div class="container">
+        <div class="container-fluid">
             <h1 class="py-1 text-light-emphasis display-6 ">Painel Administrativo</h1>
             <div class="text-center">
-                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-xl-2   ">
-                    <div class="col p-3">
+                <div class="row  row-cols-sm-1  ">
+                    <div class="col col-md-4 ">
                         <!-- LOGO SITE -->
                         <div class="border border-1 mt-1 px-1 ">
-                            <h5 class="text-start mr-2 px-3 py-2">Logo do Site</h5>
+                            <h5 class="text-start pt-2 px-3 ">Logo do Site</h5>
                             <?php
                             if (isset($_SESSION['img_logo'])) {
                                 echo $_SESSION['img_logo'];
@@ -64,7 +79,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
                                 <div>
                                     <div class="row row-cols-1 p-1">
                                         <div class="mx-3 p-1" style="width: 95%;">
-                                            <span style="font-family: sans-serif;" class="float-start text-secondary"><strong class="text-dark"><?php echo $count_logo; ?></strong> - Logo(s) Cadastrada(s)</span>
+                                            <span style="font-family: sans-serif;" class="float-start text-secondary"><strong><?php echo $count_logo; ?></strong> - Logo(s) Cadastrada(s)</span>
                                         </div>
                                         <?php
                                         foreach ($result as $res_logo) :
@@ -72,7 +87,8 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
                                         ?>
                                             <!-- LOGO -->
                                             <div class="col py-1">
-                                                <div style="background-color: #cae9ef;" class="p-2 rounded d-flex justify-content-between align-items-center gap-3 shadow-sm ">
+                                                <!-- PALETA DE CORES, BACKGROUND BOX DAS INFORMAÇÕES DARK #0d2044, #142f54, #203650, #253346   -->
+                                                <div id="darkModeColor" class="dark_color p-2 rounded d-flex justify-content-between align-items-center gap-3 border border-light-subtle shadow-sm ">
                                                     <div class="d-flex d-flex align-items-center gap-3">
                                                         <img src="<?php echo URLLOGO . $img_logo ?>" alt="" style="max-width: 60px; margin-right:10px;">
                                                         <span class="me-3"><?php echo $img_logo ?></span>
@@ -100,7 +116,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
 
                         <!-- INICIO LOGO FIVICON -->
                         <div class="border border-1 mt-1 px-1 ">
-                            <h5 class="text-start mr-2 px-3 py-2">Logo do Favicon</h5>
+                            <h5 class="text-start mr-2 px-3 pt-2">Logo do Favicon</h5>
                             <?php
                             if (isset($_SESSION['five'])) {
                                 echo $_SESSION['five'];
@@ -112,7 +128,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
                                 <div>
                                     <div class="row row-cols-1 p-1">
                                         <div class="mx-3 p-1" style="width: 95%;">
-                                            <span style="font-family: sans-serif;" class="float-start text-secondary"><strong class="text-dark"><?php echo $count_logo_favicon; ?></strong> - Logo(s) Cadastrada(s)</span>
+                                            <span style="font-family: sans-serif;" class="float-start text-secondary"><strong><?php echo $count_logo_favicon; ?></strong> - Logo(s) Cadastrada(s)</span>
                                         </div>
                                         <?php
                                         foreach ($res_favicon as $res_fav) :
@@ -120,7 +136,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
                                         ?>
                                             <!-- FAVICON -->
                                             <div class="col py-1">
-                                                <div style="background-color: #cae9ef;" class="p-2 rounded d-flex flex-column   shadow-sm ">
+                                                <div id="darkModeColor" class="dark_color p-2 rounded d-flex flex-column border border-light-subtle  shadow-sm ">
                                                     <div class="d-flex flex-column ">
                                                         <span>
                                                             <img src="<?php echo URLFAVICON . $img_fivecon ?>" alt="" style="max-width: 60px; margin-right:10px;">
@@ -156,11 +172,11 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
 
                         <!-- INICIO BANNER -->
                         <div class="border border-1 mt-1 px-1 ">
-                            <h5 class="text-start mr-2 px-3 py-2">Banner do Site</h5>
+                            <h5 class="text-start mr-2 px-3 pt-2 ">Banner do Site</h5>
                             <?php
-                            if (isset($_SESSION['img_one'])) {
-                                echo $_SESSION['img_one'];
-                                unset($_SESSION['img_one']);
+                            if (isset($_SESSION['banner'])) {
+                                echo $_SESSION['banner'];
+                                unset($_SESSION['banner']);
                             }
 
                             ?>
@@ -168,22 +184,22 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
                                 <div>
                                     <div class="row row-cols-1 p-1">
                                         <div class="mx-3 p-1" style="width: 95%;">
-                                            <span style="font-family: sans-serif;" class="float-start text-secondary"><strong class="text-dark"><?php echo $count_banner; ?></strong> - Banner(s) Cadastrada(s)</span>
+                                            <span style="font-family: sans-serif;" class="float-start text-secondary"><strong><?php echo $count_banner; ?></strong> - Banner(s) Cadastrada(s)</span>
                                         </div>
                                         <?php
-                                        foreach ($res_banner as $res_banner) :
+                                        foreach ($res_ban as $res_banner) :
                                             extract($res_banner);
                                         ?>
-                                          
+
                                             <div class="col py-1">
-                                                <div style="background-color: #cae9ef;" class="p-2 rounded d-flex justify-content-between align-items-center gap-3 shadow-sm ">
+                                                <div id="darkModeColor" class=" dark_color p-2 rounded d-flex border border-light-subtle justify-content-between align-items-center gap-3 shadow-sm ">
                                                     <div class="d-flex d-flex align-items-center gap-3">
                                                         <img src="<?php echo URLBANNER . $imag_banner ?>" alt="" style="max-width: 60px; margin-right:10px;">
                                                         <span class="me-3"><?php echo $imag_banner ?></span>
                                                     </div>
                                                     <div class="">
 
-                                                        <a title="Selecionar a logo principal do site" class="btn btn-warning me-1 btn-sm" href="../pages/update_img_one.php?id=<?php echo $id; ?>">
+                                                        <a title="Selecionar o BANNER principal do site" class="btn btn-warning me-1 btn-sm" href="../pages/update_img_one.php?id=<?php echo $id; ?>">
                                                             <i style="color:#2890d2;" class="fa-solid fa-check"></i>
                                                         </a>
                                                         <a title="Deletar Imagem" class="btn btn-danger btn-sm" href="../pages/delete_img_one.php?id=<?php echo $id; ?>">
@@ -203,10 +219,58 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
 
                         <!-- FIM BANNER -->
 
+                        <!-- INICIO DOS IMÓVEIS CADASTRADOS -->
                     </div>
+                    <div class="col col-md-8 p-1">
+                        <div class="border border-1 px-1">
+                        <h5 class="text-start mr-2 px-3 pt-2">Imóveis Cadastrados</h5>
+                        <?php
+                            if (isset($_SESSION['msg'])) {
+                                echo $_SESSION['msg'];
+                                unset($_SESSION['msg']);
+                            }
 
-
-
+                            ?>
+                            <div class="row row-cols-1 row-cols-sm-1  p-1 table-responsive">
+                                <div class=" col px-4 py-1">
+                                    <table  id="darkModeColor" class="dark_color light_mode w-100 ">
+                                        <tr>
+                                        <th scope="col">Preview</th>
+                                        <th scope="col">Cód Imóvel</th>
+                                        <th scope="col">Valor</th>
+                                        <th scope="col">Endereço</th>
+                                        <th scope="col">Bairro</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">actions</th>
+                                        </tr>
+                                        <?php
+                                            foreach ($res_imoveis as $res_imo) :
+                                                extract($res_imo);
+                                                $valor = number_format($valor_imovel, 0, ".", ".");
+                                            ?>
+                                                <tr>
+                                                    <!-- <th scope="row">1</th> -->
+                                                    <td><img src="<?php echo URLIMGONE . $images ?>" alt="" style="max-width: 50px; "></td>
+                                                    <td><?php echo $cod_imovel ?></td>
+                                                    <td><?php echo $valor ?></td>
+                                                    <td><?php echo $endereco;  ?> - <?php echo $num_casa ?></td>
+                                                    <td><?php echo $estado ?></td>
+                                                    <td><?php echo $bairro ?></td>
+                                                    <td>
+                                                        <div class="d-flex justify-content-center align-items-center gap-2">
+                                                            <a style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" class="btn btn-success btn-sm " href="../pages/editar_imo.php?id=<?php echo $id; ?>">Editar</a>
+                                                            <a style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" class="btn btn-primary btn-sm" href="../pages/delete_banner.php?id=<?php echo $id; ?>">Deletar</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            endforeach;
+                                            ?>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
