@@ -25,8 +25,9 @@
               <li><a href="#">Alugar</a></li>
             </ul>
           </li> -->
-          <li><a href="#">Comprar</a></li>
-          <li><a href="about.php">Sobre Nós</a></li>
+          <li><a href="e-comprar.php">Comprar</a></li>
+          <li><a href="financiamento-e-bancos.php">Financiamento e Bancos</a></li>
+          <!-- <li><a href="about.php">Sobre Nós</a></li> -->
           <li><a href="contact.php">Contatos</a></li>
           <!-- <a class="bg-info px-3 py-2 rounded" href="../back/pages/login.php">Login</a> -->
 

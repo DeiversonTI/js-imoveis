@@ -3,7 +3,7 @@
 session_start();
 ob_start();
 
-if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['nivel']) == 1)) {
+if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'] == 1)) {
 
     require "../core/admin/header-adm.php";
     require "../core/admin/navbar-adm.php";
@@ -110,7 +110,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
 
     require "../core/admin/footer-adm.php";
 } else {
-    header("Location: ../../../js-imoveis/admin.php");
+    header("Location: ../.././js-imoveis/admin.php");
     exit;
 }
 

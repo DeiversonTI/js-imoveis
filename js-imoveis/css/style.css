@@ -78,6 +78,18 @@ input[type=search]::placeholder {
    font-weight:300;
    letter-spacing: 2px;
  }
+ .ul_financ{
+  background-color: var(--bs-gray-200);
+ }
+
+ /* .ul_financ{
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem 3rem;
+ }
+ .ul_financ img{
+    border-radius: 10%;
+ } */
  
  
 @media screen and (max-width:990px) {
@@ -572,7 +584,7 @@ progress {
 
 .list-unstyled {
   padding-left: 0;
-  list-style: none; }
+  list-style: none; text-decoration: none;}
 
 .list-inline {
   padding-left: 0;
@@ -10006,12 +10018,13 @@ textarea {
   z-index: 1; }
 
 .property-item .property-content {
-  background: #fff;
+  /* background: #fff; */
+  background: #d2d2d236;
   padding: 30px;
   font-size: 13px;
   position: relative;
   width: 100%;
-  margin-top: -100px;
+  margin-top: 4px;
   -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
   z-index: 2; }
@@ -10446,7 +10459,7 @@ nav[aria-label="breadcrumb"] li:before {
     color: #777;
     position: relative;
     display: inline-block;
-    text-decoration: underline; }
+    text-decoration: none; }
     .site-footer a:hover {
       color: #000;
       text-decoration: none; }
@@ -10469,7 +10482,7 @@ nav[aria-label="breadcrumb"] li:before {
     .site-footer .widget .links {
       width: 150px; }
       .site-footer .widget .links li {
-        margin-bottom: 10px; }
+        margin-bottom: 10px;  }
   .site-footer .social li {
     display: inline-block; }
     .site-footer .social li a {

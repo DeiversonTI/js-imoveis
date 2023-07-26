@@ -1,5 +1,34 @@
-<?php  require "../.././js-imoveis/back/core/include/app/header.php" ?>
-<?php  require "../.././js-imoveis/back/core/include/app/navbar.php" ?>
+<?php 
+require "../back/core/app/header.php";
+$res = "SELECT * FROM contato_empresa LIMIT 1";
+$result_db = $conn->prepare($res);
+$result_db->execute();
+$result = $result_db->fetch(PDO::FETCH_ASSOC);
+extract($result);
+
+$message_cliente = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+if(!empty($message_cliente['btnMessage'])){  
+
+  $res_msn = "INSERT INTO message_cliente (nome, email, cel, tel, assunto, textarea, created) VALUES (:nome, :email, :cel, :tel, :assunto, :textarea, NOW())";
+  $result_db_msn = $conn->prepare($res_msn);
+  $result_db_msn->bindParam(':nome', $message_cliente['nome']);
+  $result_db_msn->bindParam(':email', $message_cliente['email']);
+  $result_db_msn->bindParam(':cel', $message_cliente['cel']);
+  $result_db_msn->bindParam(':tel', $message_cliente['tel']);
+  $result_db_msn->bindParam(':assunto', $message_cliente['assunto']);
+  $result_db_msn->bindParam(':textarea', $message_cliente['textarea']);
+  $result_db_msn->execute();
+
+  if ($result_db_msn->rowCount()) {
+    $_SESSION['msn'] = "<div class='alert alert-success' role='alert'>Enviado com Sucesso. Entraremos em contato em breve!</div>";
+  }
+
+}
+
+require "../back/core/app/navbar.php";
+
+?>
 
     <div
       class="hero page-inner overlay"
@@ -8,7 +37,7 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">Contact Us</h1>
+            <h1 class="heading" data-aos="fade-up">Contato</h1>
 
             <nav
               aria-label="breadcrumb"
@@ -21,7 +50,7 @@
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  Contact
+                  contato
                 </li>
               </ol>
             </nav>
@@ -41,74 +70,99 @@
             <div class="contact-info">
               <div class="address mt-2">
                 <i class="icon-room"></i>
-                <h4 class="mb-2">Location:</h4>
-                <p>
-                  43 Raymouth Rd. Baltemoer,<br />
-                  London 3910
-                </p>
+                <h4 class="mb-2">Corretor:</h4>
+                <p><?php echo $nome; ?><br /> CRECI: <?php echo $creci; ?></p>
               </div>
 
               <div class="open-hours mt-4">
                 <i class="icon-clock-o"></i>
-                <h4 class="mb-2">Open Hours:</h4>
-                <p>
-                  Sunday-Friday:<br />
-                  11:00 AM - 2300 PM
-                </p>
+                <h4 class="mb-2">Horários:</h4>
+                <p><?php echo $semana; ?>:<br /><?php echo $horario; ?></p>
               </div>
 
               <div class="email mt-4">
                 <i class="icon-envelope"></i>
                 <h4 class="mb-2">Email:</h4>
-                <p>info@Untree.co</p>
+                <p><?php echo $email?></p>
               </div>
 
               <div class="phone mt-4">
-                <i class="icon-phone"></i>
-                <h4 class="mb-2">Call:</h4>
-                <p>+1 1234 55488 55</p>
+                <i class="icon-whatsapp"></i>
+                <h4 class="mb-2">WhatsApp:</h4>
+                <p><?php echo $tel_one; ?></p>
               </div>
             </div>
           </div>
           <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-            <form action="#">
+            <div class="mb-3">
+              <h4>Fale Conosco</h4>
+              <span>Preencha o formulário abaixo que entrarei em contato com você.</span>
+            </div>
+            <?php
+              if (isset($_SESSION['msn'])) {
+                  echo $_SESSION['msn'];
+                  unset($_SESSION['msn']);
+              }
+            ?>
+
+            <form action="#" method="post">
               <div class="row">
                 <div class="col-6 mb-3">
                   <input
                     type="text"
+                    name="nome"
                     class="form-control"
-                    placeholder="Your Name"
+                    placeholder="Seu Nome"
                   />
                 </div>
                 <div class="col-6 mb-3">
                   <input
                     type="email"
+                    name="email"
                     class="form-control"
-                    placeholder="Your Email"
+                    placeholder="Seu E-mail"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="text"
+                    name="cel"
+                    class="form-control"
+                    placeholder="Celular"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="text"
+                    name="tel"
+                    class="form-control"
+                    placeholder="Telefone"
                   />
                 </div>
                 <div class="col-12 mb-3">
                   <input
                     type="text"
+                    name="assunto"
                     class="form-control"
-                    placeholder="Subject"
+                    placeholder="Asusnto"
                   />
                 </div>
                 <div class="col-12 mb-3">
                   <textarea
-                    name=""
+                    name="textarea"
                     id=""
                     cols="30"
                     rows="7"
                     class="form-control"
-                    placeholder="Message"
+                    placeholder="Olá, Preciso de um ajuda para..."
                   ></textarea>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 mb-3">
                   <input
                     type="submit"
                     value="Send Message"
+                    name="btnMessage"
                     class="btn btn-primary"
                   />
                 </div>
@@ -118,120 +172,8 @@
         </div>
       </div>
     </div>
-    <!-- /.untree_co-section -->
 
-    <div class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="widget">
-              <h3>Contact</h3>
-              <address>43 Raymouth Rd. Baltemoer, London 3910</address>
-              <ul class="list-unstyled links">
-                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-                <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-                <li>
-                  <a href="mailto:info@mydomain.com">info@mydomain.com</a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.widget -->
-          </div>
-          <!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <div class="widget">
-              <h3>Sources</h3>
-              <ul class="list-unstyled float-start links">
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Vision</a></li>
-                <li><a href="#">Mission</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Privacy</a></li>
-              </ul>
-              <ul class="list-unstyled float-start links">
-                <li><a href="#">Partners</a></li>
-                <li><a href="#">Business</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Creative</a></li>
-              </ul>
-            </div>
-            <!-- /.widget -->
-          </div>
-          <!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <div class="widget">
-              <h3>Links</h3>
-              <ul class="list-unstyled links">
-                <li><a href="#">Our Vision</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact us</a></li>
-              </ul>
+    
 
-              <ul class="list-unstyled social">
-                <li>
-                  <a href="#"><span class="icon-instagram"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon-twitter"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon-facebook"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon-linkedin"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon-pinterest"></span></a>
-                </li>
-                <li>
-                  <a href="#"><span class="icon-dribbble"></span></a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.widget -->
-          </div>
-          <!-- /.col-lg-4 -->
-        </div>
-        <!-- /.row -->
-
-        <div class="row mt-5">
-          <div class="col-12 text-center">
-            <!-- 
-              **==========
-              NOTE: 
-              Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
-              **==========
-            -->
-
-            <p>
-              Copyright &copy;
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
-              . All Rights Reserved. &mdash; Designed with love by
-              <a href="https://untree.co">Untree.co</a>
-              <!-- License information: https://untree.co/license/ -->
-            </p>
-            <div>
-              Distributed by
-              <a href="https://themewagon.com/" target="_blank">themewagon</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.container -->
-    </div>
-    <!-- /.site-footer -->
-
-    <!-- Preloader -->
-    <div id="overlayer"></div>
-    <div class="loader">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
-
-    <?php require "../.././js-imoveis/back/core/include/app/footer.php" ?>
+    <?php require "../back/core/app/footer.php" ?>
+    

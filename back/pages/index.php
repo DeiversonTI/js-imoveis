@@ -6,7 +6,7 @@ ob_start();
 
 // require_once "../conn/conn.php";
 
-if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['nivel']) == 1)) {
+if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel']) == 1) {
 
     require "../core/admin/header-adm.php";
     require "../core/admin/navbar-adm.php";
@@ -56,7 +56,6 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
     $query_imo = $conn->prepare($query);
     $query_imo->execute();
     $res_imoveis = $query_imo->fetchAll(PDO::FETCH_ASSOC);
-
 
 ?>
     <div>
@@ -279,7 +278,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['
 
 <?php require "../core/admin/footer-adm.php";
 } else {
-    header("Location: ../.././js-imoveis/admin.php");
+    header("Location: ../.././js-imoveis/about.php");
     exit;
 }
 ?>

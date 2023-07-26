@@ -3,7 +3,7 @@
 session_start();
 ob_start();
 
-if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and (isset($_SESSION['nivel']) == 1)) {
+if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'] == 1)) {
 
     // DENTRO DE HEADER TEM A CONEXÃO COM O BANCO DE DADOS GLOBAL
     require "../core/admin/header-adm.php";
