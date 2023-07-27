@@ -15,12 +15,12 @@ $retorno = $res_del->execute();
 
 if($retorno){
     // $_SESSION['img_logo'] = "<p style='color: green'>logo deletado com sucesso!</p>";
-    $_SESSION['five'] = "<div class='alert alert-danger' role='alert'>Favicon deletado com sucesso!!</div>";
-    header("Location: ../pages/index.php ");
+    $_SESSION['five_del'] = "<div class='alert alert-danger' role='alert'>Favicon deletado com sucesso!!</div>";
+    header("Location: ../pages/title_site.php ");
     exit;
 
 }else{
-    $_SESSION['five'] = "<div class='alert alert-danger' role='alert'>ERRO: Favicon Não deletado!!</div>";
-    header("Location: ../pages/index.php ");
+    $_SESSION['five_del'] = "<div class='alert alert-danger' role='alert'>ERRO: Favicon Não deletado!!</div>";
+    header("Location: ../pages/title_site.php ");
     exit;
 }

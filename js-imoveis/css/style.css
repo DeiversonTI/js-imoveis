@@ -90,7 +90,9 @@ input[type=search]::placeholder {
  .ul_financ img{
     border-radius: 10%;
  } */
- 
+ #select_msn tr{
+  background-color: #fff;
+}
  
 @media screen and (max-width:990px) {
   .content__search {

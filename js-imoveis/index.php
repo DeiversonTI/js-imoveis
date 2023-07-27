@@ -16,7 +16,7 @@ $query_banner_imo->execute();
 $result = $query_banner_imo->fetch(PDO::FETCH_ASSOC);
 
 
-$query =  "SELECT imo.id, imo.cod_imovel, ender.valor_imovel, img.images, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao 
+$query =  "SELECT imo.id, imo.cod_imovel, imo.area, ender.valor_imovel, img.images, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao 
   FROM  imoveis As imo
   INNER JOIN images_imoveis_one As img
   ON imo.id = img.fk_id_imoveis
@@ -132,7 +132,7 @@ require "../back/core/app/navbar.php";
                         <span class="icon-bath me-2"></span>
                         <span class="caption"><?php echo $banheiro ?> Banheiro(s)</span>
                       </span>
-                    </div>
+                    </div>                  
 
                     <a href="property-single.php?id=<?php echo $id; ?>" class="btn btn-primary py-2 px-3">Mais Detalhes</a>
                   </div>

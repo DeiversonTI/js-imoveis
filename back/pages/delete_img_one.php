@@ -14,12 +14,12 @@ $retorno = $res_del->execute();
 
 
 if($retorno){
-    $_SESSION['img_one'] = "<div class='alert alert-danger' role='alert'>Banner deletado com sucesso!!</div>";
-    header("Location: ../pages/index.php ");
+    $_SESSION['img_one_del'] = "<div class='alert alert-danger' role='alert'>Banner deletado com sucesso!!</div>";
+    header("Location: ../pages/banner_site.php ");
     exit;
 
 }else{
-    $_SESSION['img_one'] = "<div class='alert alert-danger' role='alert'>ERRO: Banner não deletado!!</div>";
-    header("Location: ../pages/index.php ");
+    $_SESSION['img_one_del'] = "<div class='alert alert-danger' role='alert'>ERRO: Banner não deletado!!</div>";
+    header("Location: ../pages/banner_site.php ");
     exit;
 }

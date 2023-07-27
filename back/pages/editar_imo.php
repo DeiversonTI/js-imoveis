@@ -6,7 +6,7 @@
 $id = $_GET['id'];
 require "../core/admin/header-adm.php";
 
-$query_mani =  "SELECT imo.id, imo.cod_imovel, ender.valor_imovel, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+$query_mani =  "SELECT imo.id, imo.cod_imovel, imo.area, ender.valor_imovel, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
   FROM  imoveis As imo
   INNER JOIN enderecos As ender 
   ON ender.fk_id_imoveis=imo.id
@@ -39,8 +39,6 @@ require "../core/admin/navbar-adm.php";
         <h1>Atualizar Imóvel</h1>
         <a class="btn btn-outline-danger" href="../pages/index.php">Voltar</a>
     </div>
-
-
     <form action="../model/upt_imoveis.php" method="post" class="" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
         <div class="row row-cols-1 row-cols-xl-2 ">
@@ -62,20 +60,25 @@ require "../core/admin/navbar-adm.php";
                 <label class="form-label float-start">Estado</label>
                 <input type="text" class="form-control" name="estado" value="<?php echo $bairro; ?>" placeholder="Estado do Imóvel" />
                 <label class="form-label float-start">Situação</label>
-                    <select class="form-select" name="situacao">
-                        <option value="<?php echo $situacao; ?>"><?php echo $situacao; ?></option>
-                        <option value="comprar">Comprar</option>
-                        <option value="Vender">Vender</option>
-                    </select>
+                <select class="form-select" name="situacao">
+                    <option value="<?php echo $situacao; ?>"><?php echo $situacao; ?></option>
+                    <option value="comprar">Comprar</option>
+                    <option value="Vender">Vender</option>
+                </select>
             </div>
-           
+
 
             <div class="col col-lg-6">
-                <label class="form-label float-start">Dormitório</label>
-                <input type="number" class="form-control" value="<?php echo $dormitorio; ?>" name="dormitorio" placeholder="Número de Dormitório">
-
-                <label class="form-label float-start">Banheiro</label>
-                <input type="number" class="form-control" value="<?php echo $banheiro; ?>" name="banheiro" placeholder="Número de Banheiro">
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label float-start">Dormitório</label>
+                        <input type="number" class="form-control" value="<?php echo $dormitorio; ?>" name="dormitorio" placeholder="Número de Dormitório">
+                    </div>
+                    <div class="col">
+                        <label class="form-label float-start">Banheiro</label>
+                        <input type="number" class="form-control" value="<?php echo $banheiro; ?>" name="banheiro" placeholder="Número de Banheiro">
+                    </div>
+                </div>
 
                 <label class="form-label float-start">Suite</label>
                 <input type="number" class="form-control" value="<?php echo $suite; ?>" name="suite" placeholder="Número de Suíte">
@@ -100,18 +103,20 @@ require "../core/admin/navbar-adm.php";
                 <label class="form-label float-start">Imagem</label>
                 <input type="file" name="imagens[]" multiple class="form-control" />
                 <label class="form-label float-start">Tipo do Imóvel</label>
-                    <select class="form-select" name="tipo_imovel">
-                        <option value="<?php echo $tipo_imovel; ?>"><?php echo $tipo_imovel; ?></option>
-                        <option value="Casa">Casa</option>
-                        <option value="Apartamento">Apartamento</option>
-                        <option value="Sítio">Sítio</option>
-                        <option value="Chácara">Chácara</option>
-                    </select>
+                <select class="form-select" name="tipo_imovel">
+                    <option value="<?php echo $tipo_imovel; ?>"><?php echo $tipo_imovel; ?></option>
+                    <option value="Casa">Casa</option>
+                    <option value="Apartamento">Apartamento</option>
+                    <option value="Sítio">Sítio</option>
+                    <option value="Chácara">Chácara</option>
+                </select>
+                <label class="form-label float-start">Área Total</label>
+                <input type="text" class="form-control" value="<?php echo $area; ?>" name="area" placeholder="Área total">
             </div>
         </div>
-        <div class="col"> 
+        <div class="col">
             <div>
-                    <label class="form-label float-start">Descrição do Imóvel</label><br>
+                <label class="form-label float-start">Descrição do Imóvel</label><br>
                 <textarea class="" id="trumbowyg-demo" name="descricao"><?php echo $descricao; ?></textarea>
             </div>
             <div style="width: 100%;" class="mt-2 col  d-flex justify-content-center align-items-center ">

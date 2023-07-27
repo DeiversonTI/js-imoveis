@@ -20,7 +20,7 @@ $result_imgs = $query_imgs->fetchAll(PDO::FETCH_ASSOC);
 
 // RECUPERANDO A POSTAGEM DO USUÁRIO PELO ID
 // $sel_img = "SELECT * FROM imoveis WHERE id=$dados LIMIT 1";
-$query_imo =  "SELECT imo.id, imo.cod_imovel, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+$query_imo =  "SELECT imo.id, imo.cod_imovel, imo.area, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
 FROM  imoveis As imo
 INNER JOIN images_imoveis_one As img 
 ON imo.id  = img.fk_id_imoveis
@@ -120,6 +120,13 @@ $valor = number_format($result["valor_imovel"], 0, ".", ".");
                 <span class="me-2"><i class="fa-solid fa-car fa-xl"></i></span>
                 <span class="caption_adm me-2"><?php echo $result['vagas'] ?> Vagas(s)</span>
               </div>
+            </div>
+            <div class="d-flex p-2 bg-light">
+              <div class="d-flex justify-content-center flex-column me-5 ">
+                <span class="me-2"><i class="fa-solid fa-ruler-combined fa-xl"></i></span>
+                <span class="caption_adm me-2">Área Total <?php echo $result['area'] ?></span>
+              </div>
+             
             </div>
 
 

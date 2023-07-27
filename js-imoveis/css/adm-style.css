@@ -25,11 +25,11 @@
 .dark_color td {
     border: 1px solid var(--dark-font);
     border-collapse: collapse;
-    padding: 10px 0;
+    /* padding:  0; */
 }
 
 .light_mode th, .light_mode td, .light_mode table{
-    padding: 10px 0;
+    /* padding: 10px 0; */
     border: 1px solid var(--dark-table);
 
 }
@@ -37,7 +37,18 @@
 .dark_color th,
 .dark_color td {
     background-color: var(--dark-box);
+    /* padding: 5px; */
+ 
   }
+.dark_color td{
+    padding:  5px;
+    font-size: .95rem;
+    
+}
+.select_msn td{
+    background-color: #a7220a;
+    
+}
 
 .dark_color_body{
     background-color: var(--dark-bg); 
@@ -54,6 +65,10 @@
 .login__princ {
     width: 25%;
 }
+
+/* .select_msn td{
+    background-color: #fff;
+} */
 
 @media screen and (max-width:990px) {
 

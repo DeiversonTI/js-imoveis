@@ -82,4 +82,19 @@ function ckecked(event) {
     }
 }
 
+async function atendido(id){
+   
+   await fetch(`http://localhost/js-imoveis/back/pages/update_contato_teste.php?id=${id}`) 
+   
+//    .then((resp)=>{
+//         return  resp.json()
+//    })
+   
+    .then((res)=>{
+        console.log(res)
+    })
+    .catch(e=> console.log(e))
+
+    // console.log("legal " + id)
+}
 

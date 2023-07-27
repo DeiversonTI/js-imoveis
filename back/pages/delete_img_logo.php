@@ -15,12 +15,12 @@ $retorno = $res_del->execute();
 
 if($retorno){
     // $_SESSION['img_logo'] = "<p style='color: green'>logo deletado com sucesso!</p>";
-    $_SESSION['img_logo'] = "<div class='alert alert-danger' role='alert'>Logo deletado com sucesso!!</div>";
-    header("Location: ../pages/index.php ");
-    exit;
+    $_SESSION['del_img_logo'] = "<div class='alert alert-danger' role='alert'>Logo deletado com sucesso!!</div>";
+    header("Location: ../pages/logo_site.php ");
+    
 
 }else{
-    $_SESSION['img_logo'] = "<div class='alert alert-danger' role='alert'>ERRO: logo Não deletado!!</div>";
-    header("Location: ../pages/index.php ");
-    exit;
+    $_SESSION['del_img_logo'] = "<div class='alert alert-danger' role='alert'>ERRO: logo Não deletado!!</div>";
+    header("Location: ../pages/logo_site.php ");
+  
 }
