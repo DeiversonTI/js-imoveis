@@ -5,6 +5,7 @@ ob_start();
 require_once "../conn/conn.php";
 
 $dados_imovel = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+var_dump($dados_imovel);
 
 if (!empty($dados_imovel['btnSalvarImovel'])) {
 
@@ -13,10 +14,11 @@ if (!empty($dados_imovel['btnSalvarImovel'])) {
     extract($dados_imovel);
 
     $res_imoveis = "INSERT INTO
-imoveis ( cod_imovel, dormitorio, banheiro, suite, vagas, piscina, churrasqueira, descricao,  created )
-VALUES ( :cod_imovel, :dormitorio, :banheiro, :suite, :vagas, :piscina, :churrasqueira, :descricao, NOW())";
+imoveis ( cod_imovel, fk_nome_cli, dormitorio, banheiro, suite, vagas, piscina, churrasqueira, descricao,  created )
+VALUES ( :cod_imovel,  :fk_nome_cli, :dormitorio, :banheiro, :suite, :vagas, :piscina, :churrasqueira, :descricao, NOW())";
     $result_db_imoveis = $conn->prepare($res_imoveis);   
     $result_db_imoveis->bindParam(':cod_imovel', $codigo);
+    $result_db_imoveis->bindParam(':fk_nome_cli', $nome_cli);
     $result_db_imoveis->bindParam(':dormitorio', $dormitorio);
     $result_db_imoveis->bindParam(':banheiro', $banheiro);
     $result_db_imoveis->bindParam(':suite', $suite);

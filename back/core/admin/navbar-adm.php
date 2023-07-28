@@ -18,9 +18,9 @@ ob_start();
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="../pages/index.php">Home</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="">Cadastrar Usuários</a>
-        </li>
+        </li> -->
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,7 +28,7 @@ ob_start();
           </a>
           <ul class="dropdown-menu" data-bs-theme="light">
             <li><a class="dropdown-item" href="../pages/cad_imoveis.php">Cadastrar Imóveis</a></li>
-            <li><a class="dropdown-item" href="#">Cadastrar Proprietário</a></li>
+            <li><a class="dropdown-item" href="../pages/cadastro-proprietario.php">Cadastrar Proprietário</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -37,12 +37,15 @@ ob_start();
           </a>
           <ul class="dropdown-menu" data-bs-theme="light">
             <li><a class="dropdown-item" href="../pages/logo_site.php">Inserir Logo</a></li>
-            <li><a class="dropdown-item" href="../pages/title_site.php">Inserir Favicon</a></li>
+            <li><a class="dropdown-item" href="../pages/title_site.php">Inserir Head SEO</a></li>
             <li><a class="dropdown-item" href="../pages/banner_site.php">Inserir Banner</a></li>
             <li><a class="dropdown-item" href="../pages/contact.php">Inserir Contato</a></li>
-            <li><a class="dropdown-item" href="#">Inserir Email</a></li>
-            <li><a class="dropdown-item" href="#">Inserir Sobre Nós</a></li>
+            <!-- <li><a class="dropdown-item" href="#">Inserir Email</a></li>
+            <li><a class="dropdown-item" href="#">Inserir Sobre Nós</a></li> -->
           </ul>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-danger mx-2" href="../.././js-imoveis/index.php" target="_blank">Ir para o Site</a>
         </li>
       </ul>
       <form class="d-flex align-items-center gap-3  " role="search" >

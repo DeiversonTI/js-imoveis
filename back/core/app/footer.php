@@ -1,9 +1,10 @@
 <?php
 
-$res = "SELECT nome, creci, tel_one, tel_two FROM contato_empresa LIMIT 1";
+$res = "SELECT nome, creci, tel_one, tel_two, facebook, instagram FROM contato_empresa LIMIT 1";
 $result_db = $conn->prepare($res);
 $result_db->execute();
 $result = $result_db->fetch(PDO::FETCH_ASSOC);
+
 extract($result);
 
 
@@ -50,10 +51,10 @@ extract($result);
 
           <ul class="list-unstyled social">
             <li>
-              <a href="#"><span class="icon-instagram"></span></a>
+              <a href="<?php echo $instagram?>"><span class="icon-instagram"></span></a>
             </li>        
             <li>
-              <a href="#"><span class="icon-facebook"></span></a>
+              <a href="<?php echo $facebook?>"><span class="icon-facebook"></span></a>
             </li>
          
           </ul>

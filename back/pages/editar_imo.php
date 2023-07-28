@@ -34,7 +34,7 @@ require "../core/admin/navbar-adm.php";
 
 ?>
 
-<div id="darkModeColor" class="col col-xl-6 dark_color container border border-1 p-5">
+<div id="darkModeColor" class="col col-xl-6 dark_color container border border-1 my-3 p-5 rounded">
     <div class="d-flex justify-content-between align-items-center">
         <h1>Atualizar Imóvel</h1>
         <a class="btn btn-outline-danger" href="../pages/index.php">Voltar</a>

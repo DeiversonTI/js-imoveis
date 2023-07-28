@@ -59,11 +59,10 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
 
 ?>
     <div>
-        <div class="container-fluid">
-           
+        <div class="container-fluid">           
             <div class="text-center">
                 <div class="row ">                   
-                    <div class="col col-md-9 mx-auto  p-1">
+                    <div class="col col-md-9 mx-auto p-1">
                         <div class="px-1">
                         <h1 class="py-1 text-light-emphasis display-6 ">Painel Administrativo</h1>
                         <h5 class="text-start mr-2 px-3 pt-2">Imóveis Cadastrados</h5>
@@ -78,6 +77,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                 <div class=" col px-4 py-1">
                                     <table  id="darkModeColor" class="dark_color light_mode w-100 ">
                                         <tr>
+                                        <th scope="col">Qnt</th>
                                         <th scope="col">Preview</th>
                                         <th scope="col">Cód Imóvel</th>
                                         <th scope="col">Valor</th>
@@ -87,12 +87,13 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                         <th scope="col">actions</th>
                                         </tr>
                                         <?php
-                                            foreach ($res_imoveis as $res_imo) :
+                                            foreach ($res_imoveis as $value=>$res_imo) :
                                                 extract($res_imo);
                                                 $valor = number_format($valor_imovel, 0, ".", ".");
                                             ?>
                                                 <tr>
                                                     <!-- <th scope="row">1</th> -->
+                                                    <td><?php echo $value+1 ?></td>
                                                     <td><img src="<?php echo URLIMGONE . $images ?>" alt="" style="max-width: 50px; "></td>
                                                     <td><?php echo $cod_imovel ?></td>
                                                     <td><?php echo $valor ?></td>
@@ -129,6 +130,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                 <div class=" col px-4 py-1">
                                     <table  id="darkModeColor" class="dark_color light_mode w-100 ">
                                         <tr>
+                                        <th scope="col">Qnt</th>
                                         <th scope="col">Nome</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Celular</th>
@@ -139,12 +141,13 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                         <th scope="col">Action</th>
                                         </tr>
                                         <?php
-                                            foreach ($result as $res_msn) :
+                                            foreach ($result as $value=>$res_msn) :
                                                 extract($res_msn);                                                
                                             ?>
                                           
                                                 <tr>
-                                                    <!-- <th scope="row">1</th> -->                                                    
+                                                    <!-- <th scope="row">1</th> --> 
+                                                    <td><?php echo $value+1 ?></td>                                                   
                                                     <td ><?php echo $nome ?></td>
                                                     <td><?php echo $email ?></td>
                                                     <td><?php echo $cel  ?></td>

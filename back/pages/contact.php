@@ -49,7 +49,6 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
 
     <div>
         <div class="container">
-
             <div class="text-center">
                 <div class="row row-cols-1 row-cols-lg-1">
                     <div class="col col-md-8 mx-auto  p-3">
@@ -198,7 +197,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
             </div>
         </div>
     </div>
-    </div>
+    
 
 <?php require "../core/admin/footer-adm.php";
 } else {

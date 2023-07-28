@@ -20,7 +20,7 @@ $result_imgs = $query_imgs->fetchAll(PDO::FETCH_ASSOC);
 
 // RECUPERANDO A POSTAGEM DO USUÁRIO PELO ID
 // $sel_img = "SELECT * FROM imoveis WHERE id=$dados LIMIT 1";
-$query_imo =  "SELECT imo.id, imo.cod_imovel, imo.area, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
+$query_imo =  "SELECT imo.id, imag.fk_id_imoveis, imo.cod_imovel, imo.area, ende.valor_imovel, img.images, ende.endereco, ende.num_casa, ende.estado, ende.bairro, imo.dormitorio, imo.banheiro, imo.suite, imo.vagas, imo.piscina, imo.churrasqueira, imo.descricao, sit.situacao, sit.tipo_imovel 
 FROM  imoveis As imo
 INNER JOIN images_imoveis_one As img 
 ON imo.id  = img.fk_id_imoveis
@@ -28,6 +28,8 @@ INNER JOIN enderecos As ende
 ON ende.fk_id_imoveis=imo.id
 INNER JOIN sit_imoveis As sit
 ON sit.fk_id_imoveis=imo.id
+INNER JOIN images_imoveis As imag
+ON imag.fk_id_imoveis=imo.id
 WHERE imo.id=$dados LIMIT 1";
 
 $query_img = $conn->prepare($query_imo);
@@ -75,16 +77,15 @@ $valor = number_format($result["valor_imovel"], 0, ".", ".");
                 extract($imgs);
                 
               ?>
+              <a href="slideshow-imoveis?id=<?php echo $fk_id_imoveis; ?>">
                 <img src="<?php echo URLIMOVEIS . $fk_id_imoveis . "/" . $images; ?>" alt="Image" class="img-fluid" />
+              </a>
               <?php
               endforeach;
               ?>
 
             </div>
-          </div>
-          <div>
-            galeria de imagens
-          </div>
+          </div>         
         </div>
         <div class="col-lg-4">
           <p class="meta">Código do Imóvel: <?php echo $result['cod_imovel']; ?></p>

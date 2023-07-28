@@ -112,7 +112,7 @@ require "../back/core/app/navbar.php";
             ?>
 
               <div class="property-item">
-                <a href="property-single.php" class="img">
+                <a href="property-single.php?id=<?php echo $id; ?>" class="img">
                   <img src="<?php echo URLIMGONE . $images ?>" alt="Image" class="img-fluid" />
                 </a>
 

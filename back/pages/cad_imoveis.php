@@ -6,6 +6,15 @@ ob_start();
 if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'] == 1)) {
 
     require "../core/admin/header-adm.php";
+     
+     $sel_cli = "SELECT * FROM cad_cliente";
+     $query_cli = $conn->prepare($sel_cli);
+     $query_cli->execute();
+     // conta quantas imagens tem no banco
+     $count_cli = $query_cli->rowCount();
+ 
+     $res_cliente = $query_cli->fetchAll(PDO::FETCH_ASSOC);
+     // var_dump($result);
     require "../core/admin/navbar-adm.php";
 ?>
 
@@ -18,7 +27,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                 unset($_SESSION['msg']);
             }
             ?>
-            <div  class=" text-center mt-3">
+            <div  class=" text-center my-3">
                 <div class="row mx-auto">
                     <div class="col col-xl-8 mx-auto p-1">
                         <div id="darkModeColor" class="dark_color border border-1 rounded">
@@ -30,6 +39,22 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                         <input type="file" name="images" class="form-control" />
                                         <label class="form-label float-start">Código Imóvel</label>
                                         <input type="text" class="form-control" name="codigo" placeholder="Digite o código do Imóvel" />
+
+                                        <label class="form-label float-start">Selecione o Cód Imóvel Cadastrado</label>
+                                        <select class="form-select mt-3" name="nome_cli">
+                                            <option value="">Selecionar</option>
+                                            <?php
+                                                foreach ($res_cliente as $res_cliente) :
+                                                extract($res_cliente);
+                                            ?>
+                                                <option value="<?php echo $id?>"><?php echo $nome?></option>
+                                           
+                                            <?php
+                                                endforeach;
+                                            ?>
+                                        </select>
+
+                                       
                                         <label class="form-label float-start">Valor</label>
                                         <input type="text" class="form-control" name="valor" placeholder="Valor do Imóvel" />
                                         <label class="form-label float-start">Endereço</label>
