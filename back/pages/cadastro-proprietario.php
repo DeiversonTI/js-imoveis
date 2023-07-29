@@ -80,7 +80,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                         <div>
                             <div class="row row-cols-1 px-2">
                                 <div class="mx-3 p-1">
-                                    <span style="font-family: sans-serif;" class="float-start text-secondary"><strong><?php echo $count_cli; ?></strong> - Contatos do Site</span>
+                                    <span style="font-family: sans-serif;" class="float-start text-secondary"><strong><?php echo $count_cli; ?></strong> - Donos dos Imóveis</span>
                                 </div>
                                 <div class="row row-cols-1 row-cols-sm-1  p-1 table-responsive">
                                 <div class=" col px-4 py-1">

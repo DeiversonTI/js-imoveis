@@ -82,19 +82,35 @@ function ckecked(event) {
     }
 }
 
-async function atendido(id){
+function atendido(id) {
+
+      
+    const xhttp = new XMLHttpRequest();    
+
+    xhttp.onreadystatechange = () => {
+
+        if (xhttp.readyState == 4) {
+            var car = xhttp.response;
+            console.log(car);
+        }
+    }
+
+    xhttp.open("GET", `http://localhost/js-imoveis/back/pages/update_contato_teste.php?id=${id}`);
+
+    xhttp.send(id);
    
-   await fetch(`http://localhost/js-imoveis/back/pages/update_contato_teste.php?id=${id}`) 
+//    fetch(`http://localhost/js-imoveis/back/pages/update_contato_teste.php?id=${id}`, {method: "post"}) 
    
 //    .then((resp)=>{
-//         return  resp.json()
+//        return resp.json()
+      
 //    })
    
-    .then((res)=>{
-        console.log(res)
-    })
-    .catch(e=> console.log(e))
+//     .then((res)=>{
+//         console.log(res)
+//     })
+//     .catch(e=> console.error(e))
 
-    // console.log("legal " + id)
+//     console.log("legal -> " + id )
 }
 

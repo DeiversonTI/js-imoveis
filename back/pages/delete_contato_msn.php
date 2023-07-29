@@ -17,10 +17,10 @@ if($retorno){
     // $_SESSION['img_logo'] = "<p style='color: green'>logo deletado com sucesso!</p>";
     $_SESSION['msg_msn'] = "<div class='alert alert-danger' role='alert'>Deletado com sucesso!!</div>";
     header("Location: ../pages/index.php ");
-    exit;
+    
 
 }else{
     $_SESSION['msg_msn'] = "<div class='alert alert-danger' role='alert'>ERRO: Não deletado!!</div>";
     header("Location: ../pages/index.php ");
-    exit;
+    
 }

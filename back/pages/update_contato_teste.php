@@ -5,22 +5,31 @@ session_start();
 // header("Access-Control-Allow-Headers: Content-Type");
 // header("Access-Control-Allow-Methods: GET, POST");
 header("Access-Control-Allow-Origin: *");
-// header('Content-Type: application/json;');
+header('Content-Type: application/json;');
+
 
 require_once "../conn/conn.php";
 
 
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-var_dump($id);
+// $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+// var_dump($id);
+$id = json_decode($_POST['id']);
+$dec = json_decode($_POST['nome']);
+var_dump($dec. " + ". $id);
 
  // RECUPERAR A BANNER DO BANCO
- $sel_cont = "SELECT * FROM message_cliente WHERE id=$id LIMIT 1";
+ $sel_cont = "INSERT INTO db_teste nome=:nome WHERE id=:id ";
  $query_cont = $conn->prepare($sel_cont);
+ $query_cont->bindParam(":id", $id);
+ $query_cont->bindParam(":nome", $sel_cont);
  $query_cont->execute();
 
- var_dump($sel_cont);
+ if($query_cont->rowCount()){
+    $resposta = ["msg"=>true];
+    echo json_encode($resposta);
+ }
 
- $res_cont = $query_cont->fetch(PDO::FETCH_ASSOC);
+//  $res_cont = $query_cont->fetch(PDO::FETCH_ASSOC);
 // $resposta = [];
 // while($tt  = $query_cont->fetch(PDO::FETCH_ASSOC)){
 //     $resposta[] = $tt;
@@ -29,9 +38,17 @@ var_dump($id);
 
 //  var_dump($res_cont);
 
- $resposta = ["msg"=>true, "dados"=> $res_cont];
 
- echo json_encode($resposta);
+//  $resposta =  array();
+//  while($row   =  $query_cont->fetch()){
+//     $resposta[] = $row;
+//     var_dump($row);
+//  }
+
+//  var_dump($resposta);
+
+header('Content-Type: application/json;');
+echo json_encode($resposta);
 
 
  
