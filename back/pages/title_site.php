@@ -32,11 +32,13 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
         $dest = "../img/favicon/$img/";
 
         if (move_uploaded_file($tmp, $dest)) {
-            $res_logo = "INSERT INTO title (img_fivecon, title_site, keywords, descript, created) 
-                                    VALUES (:img_fivecon, :title_site, :keywords, :descript, NOW())";
+            $res_logo = "INSERT INTO title (img_fivecon, title_site, slug, sub_slug, keywords, descript, created) 
+                                    VALUES (:img_fivecon, :title_site, :slug, :sub_slug, :keywords, :descript, NOW())";
             $result_db_logo = $conn->prepare($res_logo);
             $result_db_logo->bindParam(':img_fivecon', $img);
             $result_db_logo->bindParam(':title_site', $dadosUser['title']);
+            $result_db_logo->bindParam(':slug', $dadosUser['slug']);
+            $result_db_logo->bindParam(':sub_slug', $dadosUser['sub_slug']);
             $result_db_logo->bindParam(':keywords', $dadosUser['keywords']);
             $result_db_logo->bindParam(':descript', $dadosUser['descript']);
             $result_db_logo->execute();
@@ -58,7 +60,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
 
             <div class="text-center">
                 <div class="row ">
-                    <div class="col col-md-8 p-3 mx-auto">
+                    <div class="col col-md-7 p-3 mx-auto">
                         <!-- <h1 class="py-1 text-light-emphasis display-6 ">Painel Administrativo</h1> -->
                         <div id="darkModeColor" class="dark_color border border-1 px-1 rounded ">
                             <!-- UPLOAD DO BANNER -->
@@ -84,13 +86,19 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                     </div>
                                 </div>
                                 <div class="row px-2">
+                                    
                                     <div class="col gy-2  ">
                                         <label class="form-label float-start ">Title do Site</label>
                                         <input class=" form-control" type="text" name="title" placeholder="Titulo do site">
 
+                                        <label class="form-label float-start ">Slug</label>
+                                        <input class=" form-control" type="text" name="slug" placeholder="Slug do site">
+
+                                        <label class="form-label float-start ">Sub Slug</label>
+                                        <input class=" form-control" type="text" name="sub_slug" placeholder="Sub Slug do site">
+
                                         <label class="form-label float-start mt-3 ">Palavra-Chave</label>
                                         <input class=" form-control" type="text" name="keywords" placeholder="Piscina, churrasqueira, vagas, casa">
-
 
                                         <label class="form-label float-start mt-3">Descrição do Site</label>
                                         <input class=" form-control" type="text" name="descript" placeholder="Descrição do site">
@@ -105,8 +113,8 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                         </div>
                     </div>
                     <!-- INICIO LOGO FIVICON -->
-                    <div class="col col-md-8 mx-auto">
-                        <div class="border border-1 mt-1 px-1 ">
+                    <div class="col col-md-7 mx-auto">
+                        <div class="border border-1 mt-1 px-3 ">
                             <h5 class="text-start mr-2 px-3 pt-2">Favicon e Informações do head Cadastrado - SEO</h5>
                             <?php
                             if (isset($_SESSION['five_del'])) {
@@ -133,13 +141,16 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                                             <img src="<?php echo URLFAVICON . $img_fivecon ?>" alt="" style="max-width: 60px; margin-right:10px;">
                                                         </span>
                                                         <span class=""><?php echo $img_fivecon ?></span>
-                                                        <span><b>Titulo do Site: </b> <?php echo $title_site ?></span>
-                                                        <span><b>Palavras Chave: </b> <?php echo $keywords ?></span>
-                                                        <span><b>Descrição: </b> <?php echo $descript ?></span>
+                                                        <span><b>Titulo do Site(SEO): </b> <?php echo $title_site ?></span>
+                                                        <span><b>Slug: </b> <?php echo $slug ?></span>
+                                                        <span><b>Subtítulo: </b> <?php echo $sub_slug ?></span>
+                                                        <span><b>Palavras Chave(SEO): </b> <?php echo $keywords ?></span>
+                                                        <span><b>Descrição(SEO): </b> <?php echo $descript ?></span>
 
                                                     </div>
+                                                    <!-- TRATAR O EDITAR E TITLE -->
                                                     <div class="row gap-3 justify-content-center mt-3">
-                                                        <a title="Editar Imagem" class="col-5 btn btn-success btn-sm " href="../pages/editar_img_five.php?id=<?php echo $id; ?>">
+                                                        <a title="Editar Imagem" class="col-5 btn btn-success btn-sm " href="../pages/editar_title.php?id=<?php echo $id; ?>">
                                                             <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i>
                                                         </a>
                                                         <a title="Deletar Imagem" class="col-5 btn btn-danger btn-sm " href="../pages/delete_img_five.php?id=<?php echo $id; ?>">

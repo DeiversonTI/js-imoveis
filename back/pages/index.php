@@ -23,7 +23,8 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
 
     $result = $query_msn->fetchAll(PDO::FETCH_ASSOC);
     // var_dump($result);
-
+    // O LOGO ESTÁ VINDO DO BANCO E ADICIONADO NO HEADER, AGORA SÓ CHAMAR A VARIAVEL $URL QUE A IMAGEM APARECE ONDE QUISER
+    
 
     // // RECUPERAR A TITLE DO BANCO
     // $sel_five = "SELECT * FROM title";

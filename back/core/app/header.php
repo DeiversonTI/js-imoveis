@@ -4,7 +4,7 @@ require ("../back/Links.php");
 
 
 // O LOGO ESTÁ VINDO DO BANCO E ADICIONADO NO HEADER, AGORA SÓ CHAMAR A VARIAVEL $URL QUE A IMAGEM APARECE ONDE QUISER
-$query_five =  "SELECT * FROM title LIMIT 1";
+$query_five =  "SELECT * FROM title ORDER BY id DESC LIMIT  1";
 $query_banner_five = $conn->prepare($query_five);
 $query_banner_five->execute();
 $res_five = $query_banner_five->fetch(PDO::FETCH_ASSOC);

@@ -15,6 +15,12 @@ $query_banner_imo = $conn->prepare($query_banner);
 $query_banner_imo->execute();
 $result = $query_banner_imo->fetch(PDO::FETCH_ASSOC);
 
+$query_five =  "SELECT slug, sub_slug FROM title ORDER BY id DESC LIMIT 1";
+$query_banner_five = $conn->prepare($query_five);
+$query_banner_five->execute();
+$res_five = $query_banner_five->fetch(PDO::FETCH_ASSOC);
+
+
 
 $query =  "SELECT imo.id, imo.cod_imovel, imo.area, ender.valor_imovel, img.images, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao 
   FROM  imoveis As imo
@@ -43,8 +49,8 @@ require "../back/core/app/navbar.php";
   <div class="container position-absolute top-50 start-50 translate-middle ">
     <div class="img_logo_company  text-center d-flex flex-column justify-content-center align-items-center">
       <img class="mb-2 img_logo_company" src="<?php echo $url ?>" alt="">
-      <span class="text__slug">Venda de Imóvel no Rio de Janeiro</span>
-      <span class="text__subtitle">Assessoria Imobiliária</span>
+      <span class="text__slug"><?php echo $res_five['slug'] ?></span>
+      <span class="text__subtitle"><?php echo $res_five['sub_slug'] ?></span>
     </div>
     <div>
       <div class="text-center p-3 rounded" style=" background-color:rgba(255, 255, 255, .2) ;">
@@ -132,7 +138,7 @@ require "../back/core/app/navbar.php";
                         <span class="icon-bath me-2"></span>
                         <span class="caption"><?php echo $banheiro ?> Banheiro(s)</span>
                       </span>
-                    </div>                  
+                    </div>
 
                     <a href="property-single.php?id=<?php echo $id; ?>" class="btn btn-primary py-2 px-3">Mais Detalhes</a>
                   </div>
