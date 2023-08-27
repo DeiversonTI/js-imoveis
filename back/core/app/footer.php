@@ -15,10 +15,10 @@ extract($result);
       <div class="col-lg-4">
         <div class="widget">
           <h3>Contato</h3>
-          <address><?php echo $nome; ?><br/> CRECI: <?php echo $creci?></address>
+          <address><?php echo $nome; ?><br /> CRECI: <?php echo $creci ?></address>
           <ul class="list-unstyled links">
-            <li><?php echo $tel_one?></li>
-            <li><?php echo $tel_two?></li>           
+            <li><?php echo $tel_one ?></li>
+            <li><?php echo $tel_two ?></li>
             <!-- <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
             <li><a href="tel://11234567890">+1(123)-456-7890</a></li> -->
             <!-- <li>
@@ -36,7 +36,7 @@ extract($result);
             <!-- <li><a href="about.php">Sobre Nós</a></li> -->
             <li><a href="#">Anuncie seu Imóvel</a></li>
             <li><a href="contact.php">Fale Conosco</a></li>
-          </ul>        
+          </ul>
         </div>
         <!-- /.widget -->
       </div>
@@ -46,17 +46,17 @@ extract($result);
           <h3>Imóveis</h3>
           <ul class="list-unstyled links">
             <li><a href="e-comprar.php">Comprar Imóvel</a></li>
-            <li><a href="#">Alugar Imóvel</a></li>            
+            <li><a href="#">Alugar Imóvel</a></li>
           </ul>
 
           <ul class="list-unstyled social">
             <li>
-              <a href="<?php echo $instagram?>"><span class="icon-instagram"></span></a>
-            </li>        
-            <li>
-              <a href="<?php echo $facebook?>"><span class="icon-facebook"></span></a>
+              <a href="<?php echo $instagram ?>"><span class="icon-instagram"></span></a>
             </li>
-         
+            <li>
+              <a href="<?php echo $facebook ?>"><span class="icon-facebook"></span></a>
+            </li>
+
           </ul>
         </div>
         <!-- /.widget -->
@@ -79,17 +79,14 @@ extract($result);
           <script>
             document.write(new Date().getFullYear());
           </script>
-          . Todos Direitos Reservados &mdash; DeiveDev <a href="#>Untree.co</a>
+          . Todos Direitos Reservados &mdash;  Template Desenvolvido por <a href="https://untree.co">Untree.co</a>
           <!-- License information: https://untree.co/license/ -->
-        </p>
-        <div>
-          Distributed by
-          <a href="https://themewagon.com/" target="_blank"></a>
-        </div>
+        </p>       
       </div>
     </div>
   </div>
-  <!-- /.container -->
+</div>
+<!-- /.container -->
 </div>
 <!-- /.site-footer -->
 

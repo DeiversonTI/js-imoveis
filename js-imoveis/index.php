@@ -20,8 +20,6 @@ $query_banner_five = $conn->prepare($query_five);
 $query_banner_five->execute();
 $res_five = $query_banner_five->fetch(PDO::FETCH_ASSOC);
 
-
-
 $query =  "SELECT imo.id, imo.cod_imovel, imo.area, ender.valor_imovel, img.images, ender.endereco, ender.num_casa, ender.estado, ender.bairro, imo.dormitorio, imo.banheiro, imo.piscina, imo.churrasqueira, imo.descricao 
   FROM  imoveis As imo
   INNER JOIN images_imoveis_one As img
@@ -33,9 +31,6 @@ $query_imo = $conn->prepare($query);
 $query_imo->execute();
 $retorno = $query_imo->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($retorno);
-
-
-
 
 require "../back/core/app/navbar.php";
 ?>
@@ -66,7 +61,7 @@ require "../back/core/app/navbar.php";
               <select class="sel_input" name="situacao">
                 <option value="">Situação</option>
                 <option value="Comprar">Comprar</option>
-                <option value="Vender">Vender</option>
+                <option value="Alugar">Alugar</option>
               </select>
             </div>
             <div class="b2 ">
@@ -101,7 +96,7 @@ require "../back/core/app/navbar.php";
       </div>
       <div class="col-lg-6 text-lg-end">
         <p>
-          <a href="#" target="_blank" class="btn btn-primary text-white py-3 px-4">Todos Imóveis</a>
+          <a href="properties.php" target="_blank" class="btn btn-primary text-white py-3 px-4">Todos Imóveis</a>
         </p>
       </div>
     </div>
@@ -160,18 +155,18 @@ require "../back/core/app/navbar.php";
   </div>
 </div>
 
-<section class="features-1">
+<!-- <section class="features-1">
   <div class="container">
     <div class="row">
       <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
         <div class="box-feature">
           <span class="flaticon-house"></span>
-          <h3 class="mb-3">Our Properties</h3>
+          <h3 class="mb-3">Imóveis Mais Visitados</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Voluptates, accusamus.
           </p>
-          <p><a href="#" class="learn-more">Learn More</a></p>
+          <p><a href="search-comprar.php?url=Mais_Vistos" class="learn-more">Learn More</a></p>
         </div>
       </div>
       <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
@@ -209,7 +204,7 @@ require "../back/core/app/navbar.php";
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- <div class="section sec-testimonials">
   <div class="container">

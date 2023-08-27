@@ -11,6 +11,12 @@ require "../back/core/app/navbar.php";
 
 $dados = filter_input(INPUT_GET, 'id', FILTER_DEFAULT);
 
+// GRAVA O ID NO BANCO DE QUANTOS CLICKS O IMÓVEL RECEBEU
+$imov_query = "INSERT INTO imoveis_visitados (click, created) VALUES (:click, NOW())";
+$imov_visitas = $conn->prepare($imov_query);
+$imov_visitas->bindParam(":click", $dados);
+$imov_visitas->execute();
+
 // RECUPERANDO AS IMAGENS DO BANCO RELACIONADA AO ID DO USUÁRIO
 $sel_imgs = "SELECT * FROM images_imoveis WHERE fk_id_imoveis=$dados";
 $query_imgs = $conn->prepare($sel_imgs);

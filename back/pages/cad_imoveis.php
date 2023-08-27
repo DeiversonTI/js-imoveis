@@ -6,15 +6,15 @@ ob_start();
 if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'] == 1)) {
 
     require "../core/admin/header-adm.php";
-     
-     $sel_cli = "SELECT * FROM cad_cliente";
-     $query_cli = $conn->prepare($sel_cli);
-     $query_cli->execute();
-     // conta quantas imagens tem no banco
-     $count_cli = $query_cli->rowCount();
- 
-     $res_cliente = $query_cli->fetchAll(PDO::FETCH_ASSOC);
-     // var_dump($result);
+
+    $sel_cli = "SELECT * FROM cad_cliente";
+    $query_cli = $conn->prepare($sel_cli);
+    $query_cli->execute();
+    // conta quantas imagens tem no banco
+    $count_cli = $query_cli->rowCount();
+
+    $res_cliente = $query_cli->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($result);
     require "../core/admin/navbar-adm.php";
 ?>
 
@@ -27,7 +27,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                 unset($_SESSION['msg']);
             }
             ?>
-            <div  class=" text-center my-3">
+            <div class=" text-center my-3">
                 <div class="row mx-auto">
                     <div class="col col-xl-8 mx-auto p-1">
                         <div id="darkModeColor" class="dark_color border border-1 rounded">
@@ -44,17 +44,17 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                         <select class="form-select mt-3" name="nome_cli">
                                             <option value="">Selecionar</option>
                                             <?php
-                                                foreach ($res_cliente as $res_cliente) :
+                                            foreach ($res_cliente as $res_cliente) :
                                                 extract($res_cliente);
                                             ?>
-                                                <option value="<?php echo $id?>"><?php echo $nome?></option>
-                                           
+                                                <option value="<?php echo $id ?>"><?php echo $nome ?></option>
+
                                             <?php
-                                                endforeach;
+                                            endforeach;
                                             ?>
                                         </select>
 
-                                       
+
                                         <label class="form-label float-start">Valor</label>
                                         <input type="text" class="form-control" name="valor" placeholder="Valor do Imóvel" />
                                         <label class="form-label float-start">Endereço</label>
@@ -68,8 +68,8 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                         <label class="form-label float-start">Situação</label>
                                         <select class="form-select" name="situacao">
                                             <option value="">Selecionar</option>
-                                            <option value="comprar">Comprar</option>
-                                            <option value="Vender">Vender</option>
+                                            <option value="Comprar">Comprar</option>
+                                            <option value="Alugar">Alugar</option>
                                         </select>
 
                                     </div>
@@ -111,7 +111,10 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                             <option value="Apartamento">Apartamento</option>
                                             <option value="Sítio">Sítio</option>
                                             <option value="Chácara">Chácara</option>
+                                            <option value="Terrenos">Terrenos</option>
                                         </select>
+                                        <label class="form-label float-start">Área Total</label>
+                                        <input type="text" class="form-control" name="area" placeholder="Área total">
                                     </div>
                                 </div>
                                 <div class="col-12 px-3">

@@ -31,15 +31,18 @@ Não: Projeto em Desenvolvimento
 - [] =  Criar pagina sobre dentro do administrativo.
 - [] =  Verificar possibilidade de deixar os links da navbar dinâmicos***.
 - [x] =  Cadastrar o proprietário do Imóvel no administrativo(o corretor que faz o cadastro) e atrelar ao imóvel do cliente.
-- [] =  Criar script de imóvel mais visitado.
+- [x] =  Criar script de imóvel mais visitado.
 - [x] =  Listar as informações das mensagem do formulário dentro da página contato para home do admin.
 - [x] =  Criar formulário para receber as mensagens dentro da página contato.
-- [] =  Criar script da pesquisa dentro do pesquisar, por imóvel mais barato, mais caro, mais visitado.
+- [x] =  Criar script da pesquisa dentro do pesquisar, por imóvel mais barato, mais caro, mais visitado.
 - [] =  Adicionar require nos inputs.
 - [x] =  Adicionar uma coluna area do imóvel na tabela imoveis e adicionar nos insert das páginas relacionadas.
 - [x] =  Criar links para cada serviço(link, cadastrar imoveis, link para upload de image logo, etc...) dentro do administrativo.
 - [] =  Antes de finalizar, tratar todos os erros, apagar var_damps, verificar requires, etc...
 - [] =  Adicionar Mascaras nos campos de telefone
+- [] =  Remover item do index que não serão utilizados, no front end.
+- [] =  O cliente vende e aluga (casas, terrenos, sitios, apartamentos).
+- [] =  Recuperar as informações no backend onde o cliente enviou pelo formulário de interesse do imóvel.
 
 
 

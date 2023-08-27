@@ -18,13 +18,28 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                 ORDER BY mc.id DESC";
     $query_msn = $conn->prepare($sel_msn);
     $query_msn->execute();
+
     // conta quantas imagens tem no banco
     $count_msn = $query_msn->rowCount();
 
     $result = $query_msn->fetchAll(PDO::FETCH_ASSOC);
+
+    // IMÓVEIS DE INTERESSE
+    $sel_interesse = "SELECT inte.id, inte.nome, inte.id_imovel, msn.estado, inte.telefone, inte.email, inte.created 
+                FROM imovel_interesse As inte
+                LEFT JOIN estado_msn As msn
+                ON msn.fk_id_msn=inte.id
+                ORDER BY inte.id DESC";
+    $query_interesse = $conn->prepare($sel_interesse);
+    $query_interesse->execute();
+
+    // conta quantas imagens tem no banco
+    $count_msn = $query_interesse->rowCount();
+
+    $result_interesse = $query_interesse->fetchAll(PDO::FETCH_ASSOC);
     // var_dump($result);
     // O LOGO ESTÁ VINDO DO BANCO E ADICIONADO NO HEADER, AGORA SÓ CHAMAR A VARIAVEL $URL QUE A IMAGEM APARECE ONDE QUISER
-    
+
 
     // // RECUPERAR A TITLE DO BANCO
     // $sel_five = "SELECT * FROM title";
@@ -66,6 +81,7 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
         <div class="container-fluid">
             <div class="text-center">
                 <div class="row ">
+                    <!-- DADOS RECUPERADOS DOS IMÓVEIS CADASTRADOS -->
                     <div class="col col-md-9 mx-auto p-1">
                         <div class="px-1">
                             <h1 class="py-1 text-light-emphasis display-6 ">Painel Administrativo</h1>
@@ -120,9 +136,10 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                         </div>
                     </div>
 
+                    <!-- MENSAGENS RECUPERADAS DO CLIENTE VINDO DO FORMULÁRIO DE CONTATO -->
                     <div class="col col-md-9 mx-auto  p-1">
                         <div class="px-1">
-                            <h5 class="text-start mr-2 px-3 pt-4">Mensagens de Clientes Vindo do Site</h5>
+                            <h5 class="text-start mr-2 px-3 pt-4">Mensagens de Clientes do FORMULÁRIO DE CONTATO</h5>
                             <?php
                             if (isset($_SESSION['msg_msn'])) {
                                 echo $_SESSION['msg_msn'];
@@ -167,6 +184,69 @@ if (isset($_SESSION['id']) and (isset($_SESSION['nome'])) and ($_SESSION['nivel'
                                                 <td><?php echo $created ?></td>
                                                 <td>
                                                     <div class=" d-flex justify-content-center align-items-center gap-2 w-100">
+                                                        <a style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" class="btn btn-success btn-sm w-100 " href="../pages/status-msn.php?id=<?php echo $id ?>&nome=Atendido">Atendido</a>
+                                                        <a style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" class="btn btn-primary btn-sm w-100" href="../pages/status-msn.php?id=<?php echo $id ?>&nome=Negociando">Negociando</a>
+                                                        <a style=" --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" class="btn btn-info btn-sm w-100" href="../pages/status-msn.php?id=<?php echo $id ?>&nome=Finalizado">Finalizado</a>
+                                                        <a style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" class="btn btn-danger btn-sm w-100" href="../pages/delete_contato_msn.php?id=<?php echo $id; ?>">Deletar</a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        <?php
+                                        endforeach;
+                                        ?>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MENSAGENS RECUPERADAS DO CLIENTE VINDO DO FORMULÁRIO IMÓVEIS DE INTERESSE -->
+                    <div class="col col-md-9 mx-auto  p-1">
+                        <div class="px-1">
+                            <h5 class="text-start mr-2 px-3 pt-4">Mensagens de Clientes do FORMULÁRIO IMÓVEIS INTERESSADOS</h5>
+                            <?php
+                            if (isset($_SESSION['msg_msn'])) {
+                                echo $_SESSION['msg_msn'];
+                                unset($_SESSION['msg_msn']);
+                            }
+
+                            ?>
+                            <div class="row row-cols-1 row-cols-sm-1  p-1 table-responsive">
+                                <div class=" col px-4 py-1">
+                                    <table id="darkModeColor" class="dark_color light_mode w-100 ">
+                                        <tr>
+                                            <th scope="col">Qnt</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Imóvel</th>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Telefone</th>
+                                            <th scope="col">Recebido em: </th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                        <?php
+                                        foreach ($result_interesse as $value => $res_inte) :
+                                            extract($res_inte);
+                                        ?>
+
+                                            <tr>
+                                                <!-- <th scope="row">1</th> -->
+                                                <td><?php echo $value + 1 ?></td>
+                                                <td>
+                                                    <?php
+                                                    echo $estado ? $estado : "Aguardando...";
+                                                    ?>
+                                                </td>
+                                                <td><?php echo $id_imovel ?></td>
+                                                <td><?php echo $nome ?></td>
+                                                <td><?php echo $email ?></td>
+                                                <td><?php echo $tel ?></td>
+                                                <td><?php echo $created ?></td>
+                                                <td>
+                                                    <div class=" d-flex justify-content-center align-items-center gap-2 w-100">
+                                                        <a style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" class="btn btn-success btn-sm w-100 " href="../pages/imoveis-cliente-interesse.php?id=<?php echo $id_imovel; ?>">Imóvel</a>
                                                         <a style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" class="btn btn-success btn-sm w-100 " href="../pages/status-msn.php?id=<?php echo $id ?>&nome=Atendido">Atendido</a>
                                                         <a style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" class="btn btn-primary btn-sm w-100" href="../pages/status-msn.php?id=<?php echo $id ?>&nome=Negociando">Negociando</a>
                                                         <a style=" --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" class="btn btn-info btn-sm w-100" href="../pages/status-msn.php?id=<?php echo $id ?>&nome=Finalizado">Finalizado</a>

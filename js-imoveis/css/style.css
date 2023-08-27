@@ -13,6 +13,37 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+ /* details */
+ details{
+  border: 1px solid rgb(37, 37, 37);  
+  z-index: 5000;
+  top: 29%;  
+  padding: 7px;
+  background-color: #fff;
+  color: #00132c;
+  text-align: start;
+ }
+
+ details a {
+  padding: 1px;
+  width: 100%;
+  display: flex;
+ }
+
+ details a:hover{
+  background-color: #003333;
+  padding: 1px;
+  color: #fff;
+  width: 100%;
+ }
+
+ dialog::backdrop{
+  background-color: rgba(0, 0, 0, 0.075);
+ }
+ #modal-dialog{
+  background-color: rgba(0, 0, 0, 0.075);
+ }
 .inp_input,
 .sel_input{
   padding:15px;
@@ -93,8 +124,14 @@ input[type=search]::placeholder {
  #select_msn tr{
   background-color: #fff;
 }
+
+
  
 @media screen and (max-width:990px) {
+    details {
+      top: 31%;
+  
+    }
   .content__search {
       display: flex;
       flex-direction: column;

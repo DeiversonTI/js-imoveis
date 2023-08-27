@@ -114,3 +114,7 @@ function atendido(id) {
 //     console.log("legal -> " + id )
 }
 
+function changeValuesSearch(id) {
+    alert(id)
+}
+
